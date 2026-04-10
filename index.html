@@ -14,7 +14,7 @@
       --border:    #2a2a2a;
       --text:      #e8e8e8;
       --muted:     #888;
-      --accent:    #c8a96e;   /* warmes Gold – passt zu Fotografie */
+      --accent:    #c8a96e;
       --nav-w:     240px;
       --footer-h:  56px;
       --font:      'Segoe UI', system-ui, sans-serif;
@@ -101,6 +101,7 @@
     main {
       flex: 1;
       overflow-y: auto;
+      padding-bottom: calc(var(--footer-h) + 2rem);
     }
 
     /* ── Hero / Landingpage ── */
@@ -114,7 +115,6 @@
       background:
         linear-gradient(to right, rgba(15,15,15,0.92) 0%, rgba(15,15,15,0.5) 60%, transparent 100%),
         url('assets/images/hero.jpg') center/cover no-repeat;
-      /* Tausche hero.jpg gegen dein eigenes Bild aus */
     }
 
     .hero-eyebrow {
@@ -153,7 +153,7 @@
 
     .hero .btn:hover { opacity: 0.85; text-decoration: none; }
 
-    /* ── Kamera-Info-Leiste (kleines Easter Egg für Fotografen) ── */
+    /* ── EXIF-Leiste ── */
     .exif-bar {
       display: flex;
       gap: 1.5rem;
@@ -170,11 +170,9 @@
       font-family: 'Courier New', monospace;
     }
 
-    .exif-bar span strong {
-      color: var(--text);
-    }
+    .exif-bar span strong { color: var(--text); }
 
-    /* ── Platzhalter-Sections ── */
+    /* ── Sections ── */
     .section {
       padding: 4rem 5rem;
       border-top: 1px solid var(--border);
@@ -191,8 +189,35 @@
       max-width: 640px;
     }
 
+    /* ── Impressum ── */
+    .impressum {
+      padding: 2rem 5rem 4rem;
+      border-top: 1px solid var(--border);
+    }
+
+    .impressum h2 {
+      font-size: 1rem;
+      color: var(--muted);
+      margin-bottom: 0.75rem;
+      letter-spacing: 0.08em;
+      text-transform: uppercase;
+    }
+
+    .impressum p {
+      font-size: 0.85rem;
+      color: var(--muted);
+      line-height: 1.7;
+    }
+
+    .impressum a { color: var(--muted); }
+    .impressum a:hover { color: var(--accent); }
+
     /* ── Footer ── */
     footer {
+      position: fixed;
+      bottom: 0;
+      left: 0;
+      width: 100%;
       height: var(--footer-h);
       background: var(--surface);
       border-top: 1px solid var(--border);
@@ -202,7 +227,7 @@
       padding: 0 2rem;
       font-size: 0.82rem;
       color: var(--muted);
-      flex-shrink: 0;
+      z-index: 1000;
     }
 
     footer .footer-links {
@@ -224,7 +249,6 @@
       text-decoration: none;
     }
 
-    /* Bluesky-Schmetterling SVG */
     .bsky-icon {
       width: 16px;
       height: 16px;
@@ -282,6 +306,8 @@
 
       .section { padding: 3rem 1.5rem; }
 
+      .impressum { padding: 2rem 1.5rem 4rem; }
+
       footer { padding: 0 1rem; font-size: 0.75rem; }
     }
   </style>
@@ -306,13 +332,14 @@
         <li><a href="#ausruestung"><span class="nav-icon">⌖</span>Ausrüstung</a></li>
         <li><a href="#ueber"><span class="nav-icon">◉</span>Über mich</a></li>
         <li><a href="#kontakt"><span class="nav-icon">◎</span>Kontakt</a></li>
+        <li><a href="#impressum"><span class="nav-icon">·</span>Impressum</a></li>
       </ul>
     </nav>
 
     <!-- ── Haupt-Content ── -->
     <main>
 
-      <!-- Hero / Landingpage -->
+      <!-- Hero -->
       <section class="hero" id="home">
         <div class="hero-eyebrow">Fotografie · München & Umgebung</div>
         <h1>Licht einfangen,<br>Momente festhalten.</h1>
@@ -321,8 +348,6 @@
           irgendwo auf einer Schotterpiste.
         </p>
         <a href="#galerie" class="btn">Zur Galerie →</a>
-
-        <!-- EXIF-Leiste als kreatives Detail -->
         <div class="exif-bar">
           <span>📷 <strong>Canon EOS R6</strong></span>
           <span>🔭 <strong>16–200mm</strong> Brennweite</span>
@@ -331,19 +356,19 @@
         </div>
       </section>
 
-      <!-- Galerie-Platzhalter -->
+      <!-- Galerie -->
       <section class="section" id="galerie">
         <h2>Galerie</h2>
-        <p>Hier kommen deine Bilder rein. Einfach <code>&lt;img&gt;</code>-Tags oder ein Lightbox-Script einbinden.</p>
+        <p>Hier kommen deine Bilder rein.</p>
       </section>
 
-      <!-- Blog-Platzhalter -->
+      <!-- Blog -->
       <section class="section" id="blog">
         <h2>Blog</h2>
         <p>Geschichten hinter den Bildern – Locations, Lichtstimmungen, Pannen und Glücksmomente.</p>
       </section>
 
-      <!-- Ausrüstung-Platzhalter -->
+      <!-- Ausrüstung -->
       <section class="section" id="ausruestung">
         <h2>Ausrüstung</h2>
         <p>Canon R6 · EF 16–35 f/4 L · EF 24–70 f/2.8 L · EF 70–200 f/2.8 L · EF 50 f/1.8 · LensBaby Composer Pro II</p>
@@ -358,24 +383,34 @@
       <!-- Kontakt -->
       <section class="section" id="kontakt">
         <h2>Kontakt</h2>
-        <p>Am einfachsten erreichst du mich über <a href="https://bsky.app/profile/photo-wolf.bsky.social">Bluesky</a>.</p>
+        <p>Am einfachsten erreichst du mich über <a href="https://bsky.app/profile/photo-wolf.bsky.social">Bluesky</a> oder per <a href="mailto:rip2345@gmail.com">E-Mail</a>.</p>
       </section>
+
+      <!-- Impressum -->
+      <div class="impressum" id="impressum">
+        <h2>Impressum</h2>
+        <p>
+          Andreas Wolf<br>
+          Privater Hobby-Fotografie-Blog – nicht kommerziell<br>
+          <br>
+          Kontakt: <a href="mailto:rip2345@gmail.com">rip2345@gmail.com</a><br>
+          Inhaltlich verantwortlich gemäß §18 Abs. 2 MStV: Andreas Wolf
+        </p>
+      </div>
 
     </main>
   </div>
 
-  <!-- ── Footer (immer sichtbar) ── -->
+  <!-- ── Footer ── -->
   <footer>
-    <span>© 2026 Photo-Wolf · Andy</span>
+    <span>© 2026 Photo-Wolf · Andreas Wolf</span>
     <div class="footer-links">
-      <!-- Bluesky -->
       <a href="https://bsky.app/profile/photo-wolf.bsky.social" target="_blank" rel="noopener">
         <svg class="bsky-icon" viewBox="0 0 360 320" xmlns="http://www.w3.org/2000/svg">
           <path d="M180 142c-16-72-75-120-120-120C18 22 0 60 0 90c0 42 28 70 60 80-40 8-60 30-60 60 0 36 30 68 80 68 36 0 72-18 100-60 28 42 64 60 100 60 50 0 80-32 80-68 0-30-20-52-60-60 32-10 60-38 60-80 0-30-18-68-60-68-45 0-104 48-120 120z"/>
         </svg>
         Bluesky
       </a>
-      <!-- Impressum-Platzhalter -->
       <a href="#impressum">Impressum</a>
     </div>
   </footer>
@@ -385,14 +420,12 @@
     const btn = document.getElementById('hamburger');
     const sidebar = document.getElementById('sidebar');
     btn.addEventListener('click', () => sidebar.classList.toggle('open'));
-
-    // Sidebar schließen wenn Link geklickt (Mobile)
     sidebar.querySelectorAll('a').forEach(a => {
       a.addEventListener('click', () => sidebar.classList.remove('open'));
     });
 
     // Aktiven Nav-Link beim Scrollen hervorheben
-    const sections = document.querySelectorAll('section[id]');
+    const sections = document.querySelectorAll('section[id], div[id]');
     const navLinks = document.querySelectorAll('nav.sidebar a');
 
     const observer = new IntersectionObserver(entries => {
