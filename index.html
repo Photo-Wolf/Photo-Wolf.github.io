@@ -464,7 +464,7 @@
         images.forEach((name, idx) => {
           const src = basePath + name;
           const fig = document.createElement('figure');
-          fig.innerHTML = `<img src="${src}" alt="Foto ${idx+1}" loading="lazy"><figcaption>${name}</figcaption>`;
+          fig.innerHTML = `<img src="${src}" alt="Foto ${idx+1}" loading="lazy">`;
           fig.addEventListener('click', () => openLightbox(idx));
           grid.appendChild(fig);
         });
@@ -479,7 +479,7 @@
     function openLightbox(idx) {
       currentIdx = idx;
       lbImg.src = basePath + images[idx];
-      lbCap.textContent = `${idx + 1} / ${images.length}  ·  ${images[idx]}`;
+      lbCap.textContent = `${idx + 1} / ${images.length}`;
       lb.classList.add('open');
       document.body.style.overflow = 'hidden';
     }
