@@ -3,43 +3,31 @@
 <head>
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-  <link rel="icon" href="/favicon.ico" type="image/x-icon">
   <title>Photo-Wolf | Fotografie</title>
+  <link rel="icon" href="/favicon.ico?v=1" type="image/x-icon">
   <style>
-    /* ── Basis ── */
     *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
 
     :root {
-      --bg:        #0f0f0f;
-      --surface:   #1a1a1a;
-      --border:    #2a2a2a;
-      --text:      #e8e8e8;
-      --muted:     #888;
-      --accent:    #c8a96e;
-      --nav-w:     240px;
-      --footer-h:  56px;
-      --font:      'Segoe UI', system-ui, sans-serif;
+      --bg:       #0f0f0f;
+      --surface:  #1a1a1a;
+      --border:   #2a2a2a;
+      --text:     #e8e8e8;
+      --muted:    #888;
+      --accent:   #c8a96e;
+      --nav-w:    240px;
+      --footer-h: 56px;
+      --font:     'Segoe UI', system-ui, sans-serif;
     }
 
-    html, body {
-      height: 100%;
-      background: var(--bg);
-      color: var(--text);
-      font-family: var(--font);
-      font-size: 16px;
-      line-height: 1.6;
-    }
-
+    html, body { height: 100%; background: var(--bg); color: var(--text); font-family: var(--font); font-size: 16px; line-height: 1.6; }
     a { color: var(--accent); text-decoration: none; }
     a:hover { text-decoration: underline; }
 
-    /* ── Layout-Wrapper ── */
-    .layout {
-      display: flex;
-      min-height: calc(100vh - var(--footer-h));
-    }
+    /* ── Layout ── */
+    .layout { display: flex; min-height: calc(100vh - var(--footer-h)); }
 
-    /* ── Sidebar-Navigation ── */
+    /* ── Sidebar ── */
     nav.sidebar {
       width: var(--nav-w);
       background: var(--surface);
@@ -54,348 +42,339 @@
       flex-shrink: 0;
     }
 
-    nav.sidebar .logo {
-      font-size: 1.4rem;
-      font-weight: 700;
-      letter-spacing: 0.05em;
-      color: var(--accent);
-      margin-bottom: 0.25rem;
-    }
+    nav.sidebar .logo { font-size: 1.4rem; font-weight: 700; letter-spacing: 0.05em; color: var(--accent); margin-bottom: 0.25rem; }
+    nav.sidebar .tagline { font-size: 0.75rem; color: var(--muted); margin-bottom: 2.5rem; letter-spacing: 0.08em; text-transform: uppercase; }
 
-    nav.sidebar .tagline {
-      font-size: 0.75rem;
-      color: var(--muted);
-      margin-bottom: 2.5rem;
-      letter-spacing: 0.08em;
-      text-transform: uppercase;
-    }
-
-    nav.sidebar ul {
-      list-style: none;
-      display: flex;
-      flex-direction: column;
-      gap: 0.25rem;
-    }
-
+    nav.sidebar ul { list-style: none; display: flex; flex-direction: column; gap: 0.25rem; }
     nav.sidebar ul li a {
-      display: block;
-      padding: 0.55rem 0.75rem;
-      border-radius: 6px;
-      color: var(--text);
-      font-size: 0.95rem;
-      transition: background 0.15s, color 0.15s;
+      display: block; padding: 0.55rem 0.75rem; border-radius: 6px;
+      color: var(--text); font-size: 0.95rem; transition: background 0.15s, color 0.15s;
     }
-
     nav.sidebar ul li a:hover,
-    nav.sidebar ul li a.active {
-      background: var(--border);
-      color: var(--accent);
-      text-decoration: none;
-    }
+    nav.sidebar ul li a.active { background: var(--border); color: var(--accent); text-decoration: none; }
+    nav.sidebar .nav-icon { margin-right: 0.6rem; opacity: 0.7; }
 
-    nav.sidebar .nav-icon {
-      margin-right: 0.6rem;
-      opacity: 0.7;
-    }
+    /* ── Main ── */
+    main { flex: 1; overflow-y: auto; height: calc(100vh - var(--footer-h)); scroll-behavior: smooth; }
 
-    /* ── Haupt-Content ── */
-    main {
-      flex: 1;
-      overflow-y: auto;
-      padding-bottom: calc(var(--footer-h) + 2rem);
-    }
+    /* ── Views (Panels) ── */
+    .view { display: none; min-height: calc(100vh - var(--footer-h)); }
+    .view.active { display: block; }
 
     /* ── Hero ── */
     .hero {
       min-height: calc(100vh - var(--footer-h));
-      display: flex;
-      flex-direction: column;
-      justify-content: center;
-      align-items: flex-start;
+      display: flex; flex-direction: column; justify-content: center; align-items: flex-start;
       padding: 4rem 5rem;
       background:
         linear-gradient(to right, rgba(15,15,15,0.92) 0%, rgba(15,15,15,0.5) 60%, transparent 100%),
         url('assets/images/hero.jpg') center/cover no-repeat;
     }
 
-    .hero-eyebrow {
-      font-size: 0.75rem;
-      letter-spacing: 0.2em;
-      text-transform: uppercase;
-      color: var(--accent);
-      margin-bottom: 1rem;
-    }
-
-    .hero h1 {
-      font-size: clamp(2rem, 5vw, 4rem);
-      font-weight: 700;
-      line-height: 1.15;
-      max-width: 640px;
-      margin-bottom: 1.25rem;
-    }
-
-    .hero p {
-      font-size: 1.15rem;
-      color: var(--muted);
-      max-width: 520px;
-      margin-bottom: 2rem;
-    }
+    .hero-eyebrow { font-size: 0.75rem; letter-spacing: 0.2em; text-transform: uppercase; color: var(--accent); margin-bottom: 1rem; }
+    .hero h1 { font-size: clamp(2rem, 5vw, 4rem); font-weight: 700; line-height: 1.15; max-width: 640px; margin-bottom: 1.25rem; }
+    .hero p { font-size: 1.15rem; color: var(--muted); max-width: 520px; margin-bottom: 2rem; }
 
     .hero .btn {
-      display: inline-block;
-      padding: 0.7rem 1.8rem;
-      background: var(--accent);
-      color: #0f0f0f;
-      font-weight: 600;
-      border-radius: 4px;
-      letter-spacing: 0.04em;
-      transition: opacity 0.2s;
+      display: inline-block; padding: 0.7rem 1.8rem;
+      background: var(--accent); color: #0f0f0f;
+      font-weight: 600; border-radius: 4px; letter-spacing: 0.04em;
+      transition: opacity 0.2s; cursor: pointer; border: none; font-size: 1rem;
     }
-
     .hero .btn:hover { opacity: 0.85; text-decoration: none; }
 
-    /* ── EXIF-Leiste ── */
-    .exif-bar {
-      display: flex;
-      gap: 1.5rem;
-      flex-wrap: wrap;
-      margin-top: 3rem;
-      padding-top: 1.5rem;
-      border-top: 1px solid var(--border);
-    }
-
-    .exif-bar span {
-      font-size: 0.75rem;
-      color: var(--muted);
-      letter-spacing: 0.06em;
-      font-family: 'Courier New', monospace;
-    }
-
+    .exif-bar { display: flex; gap: 1.5rem; flex-wrap: wrap; margin-top: 3rem; padding-top: 1.5rem; border-top: 1px solid var(--border); }
+    .exif-bar span { font-size: 0.75rem; color: var(--muted); letter-spacing: 0.06em; font-family: 'Courier New', monospace; }
     .exif-bar span strong { color: var(--text); }
 
-    /* ── Sections ── */
-    .section {
-      padding: 4rem 5rem;
-      border-top: 1px solid var(--border);
+    /* ── View-Header ── */
+    .view-header { padding: 3rem 4rem 1.5rem; border-bottom: 1px solid var(--border); }
+    .view-header h2 { font-size: 1.8rem; color: var(--accent); margin-bottom: 0.4rem; }
+    .view-header p { color: var(--muted); font-size: 0.95rem; }
+
+    /* ── Galerie Grid ── */
+    .gallery-grid {
+      display: grid;
+      grid-template-columns: repeat(auto-fill, minmax(260px, 1fr));
+      gap: 12px;
+      padding: 2rem 4rem 4rem;
     }
 
-    .section h2 {
-      font-size: 1.6rem;
-      color: var(--accent);
-      margin-bottom: 1rem;
+    .gallery-grid figure {
+      margin: 0; border-radius: 10px; overflow: hidden;
+      background: var(--surface); border: 1px solid var(--border);
+      cursor: pointer; transition: transform 0.2s, border-color 0.2s;
+    }
+    .gallery-grid figure:hover { transform: scale(1.02); border-color: var(--accent); }
+    .gallery-grid figure img { width: 100%; height: 220px; object-fit: cover; display: block; }
+    .gallery-grid figcaption { padding: 8px 12px; font-size: 11px; color: var(--muted); }
+
+    /* ── Blog Grid ── */
+    .blog-grid {
+      display: grid;
+      grid-template-columns: repeat(auto-fill, minmax(300px, 1fr));
+      gap: 20px;
+      padding: 2rem 4rem 4rem;
     }
 
-    .section p {
-      color: var(--muted);
-      max-width: 640px;
+    .blog-card {
+      background: var(--surface); border: 1px solid var(--border);
+      border-radius: 12px; overflow: hidden;
+      cursor: pointer; transition: border-color 0.2s, transform 0.2s;
     }
+    .blog-card:hover { border-color: var(--accent); transform: translateY(-3px); }
+    .blog-card .card-img { width: 100%; height: 200px; object-fit: cover; display: block; background: var(--border); }
+    .blog-card .card-img-placeholder { width: 100%; height: 200px; background: var(--border); display: flex; align-items: center; justify-content: center; font-size: 2rem; color: var(--muted); }
+    .blog-card .card-body { padding: 1.25rem; }
+    .blog-card .card-date { font-size: 0.75rem; color: var(--muted); letter-spacing: 0.08em; text-transform: uppercase; margin-bottom: 0.5rem; }
+    .blog-card .card-title { font-size: 1.1rem; font-weight: 600; color: var(--text); margin-bottom: 0.5rem; }
+    .blog-card .card-excerpt { font-size: 0.88rem; color: var(--muted); line-height: 1.6; }
+
+    /* ── Einfache Sections ── */
+    .simple-section { padding: 3rem 4rem 4rem; max-width: 760px; }
+    .simple-section h3 { font-size: 1.1rem; color: var(--accent); margin: 1.5rem 0 0.5rem; }
+    .simple-section p { color: var(--muted); margin-bottom: 0.75rem; }
+    .simple-section ul { color: var(--muted); padding-left: 1.25rem; }
+    .simple-section ul li { margin-bottom: 0.4rem; }
 
     /* ── Impressum ── */
-    .impressum {
-      padding: 2rem 5rem 4rem;
-      border-top: 1px solid var(--border);
+    .impressum-section { padding: 3rem 4rem 4rem; }
+    .impressum-section p { font-size: 0.88rem; color: var(--muted); line-height: 1.8; }
+    .impressum-section a { color: var(--muted); }
+    .impressum-section a:hover { color: var(--accent); }
+
+    /* ── Lightbox ── */
+    .lightbox {
+      display: none; position: fixed; inset: 0; z-index: 500;
+      background: rgba(0,0,0,0.92);
+      align-items: center; justify-content: center;
+    }
+    .lightbox.open { display: flex; }
+
+    .lightbox img {
+      max-width: 90vw; max-height: 88vh;
+      border-radius: 6px; object-fit: contain;
+      box-shadow: 0 8px 60px rgba(0,0,0,0.8);
     }
 
-    .impressum h2 {
-      font-size: 1rem;
-      color: var(--muted);
-      margin-bottom: 0.75rem;
-      letter-spacing: 0.08em;
-      text-transform: uppercase;
+    .lb-close {
+      position: absolute; top: 1.2rem; right: 1.5rem;
+      font-size: 2rem; color: #fff; cursor: pointer; line-height: 1;
+      background: none; border: none; opacity: 0.7; transition: opacity 0.15s;
     }
+    .lb-close:hover { opacity: 1; }
 
-    .impressum p {
-      font-size: 0.85rem;
-      color: var(--muted);
-      line-height: 1.7;
+    .lb-prev, .lb-next {
+      position: absolute; top: 50%; transform: translateY(-50%);
+      font-size: 2.5rem; color: #fff; cursor: pointer;
+      background: none; border: none; opacity: 0.6; transition: opacity 0.15s;
+      padding: 0 1.5rem; user-select: none;
     }
+    .lb-prev { left: 0; }
+    .lb-next { right: 0; }
+    .lb-prev:hover, .lb-next:hover { opacity: 1; }
 
-    .impressum a { color: var(--muted); }
-    .impressum a:hover { color: var(--accent); }
+    .lb-caption {
+      position: absolute; bottom: 1.2rem; left: 50%; transform: translateX(-50%);
+      font-size: 0.82rem; color: rgba(255,255,255,0.5);
+      font-family: 'Courier New', monospace; letter-spacing: 0.06em;
+    }
 
     /* ── Footer ── */
     footer {
-      position: fixed;
-      bottom: 0;
-      left: 0;
-      width: 100%;
-      height: var(--footer-h);
-      background: var(--surface);
-      border-top: 1px solid var(--border);
-      display: flex;
-      align-items: center;
-      justify-content: space-between;
-      padding: 0 2rem;
-      font-size: 0.82rem;
-      color: var(--muted);
-      z-index: 1000;
+      position: fixed; bottom: 0; left: 0; width: 100%; height: var(--footer-h);
+      background: var(--surface); border-top: 1px solid var(--border);
+      display: flex; align-items: center; justify-content: space-between;
+      padding: 0 2rem; font-size: 0.82rem; color: var(--muted); z-index: 100;
     }
+    footer .footer-links { display: flex; gap: 1.25rem; align-items: center; }
+    footer .footer-links a { color: var(--muted); transition: color 0.15s; display: flex; align-items: center; gap: 0.35rem; }
+    footer .footer-links a:hover { color: var(--accent); text-decoration: none; }
+    .bsky-icon { width: 16px; height: 16px; fill: currentColor; }
 
-    footer .footer-links {
-      display: flex;
-      gap: 1.25rem;
-      align-items: center;
-    }
-
-    footer .footer-links a {
-      color: var(--muted);
-      transition: color 0.15s;
-      display: flex;
-      align-items: center;
-      gap: 0.35rem;
-    }
-
-    footer .footer-links a:hover {
-      color: var(--accent);
-      text-decoration: none;
-    }
-
-    .bsky-icon {
-      width: 16px;
-      height: 16px;
-      fill: currentColor;
-    }
-
-    /* ── Hamburger (Mobile) ── */
+    /* ── Hamburger ── */
     .hamburger {
-      display: none;
-      position: fixed;
-      top: 1rem;
-      left: 1rem;
-      z-index: 200;
-      background: var(--surface);
-      border: 1px solid var(--border);
-      border-radius: 6px;
-      padding: 0.5rem 0.65rem;
-      cursor: pointer;
-      flex-direction: column;
-      gap: 5px;
+      display: none; position: fixed; top: 1rem; left: 1rem; z-index: 200;
+      background: var(--surface); border: 1px solid var(--border);
+      border-radius: 6px; padding: 0.5rem 0.65rem; cursor: pointer;
+      flex-direction: column; gap: 5px;
     }
-
-    .hamburger span {
-      display: block;
-      width: 22px;
-      height: 2px;
-      background: var(--text);
-      border-radius: 2px;
-    }
+    .hamburger span { display: block; width: 22px; height: 2px; background: var(--text); border-radius: 2px; }
 
     /* ── Responsive ── */
     @media (max-width: 768px) {
       .hamburger { display: flex; }
-
-      nav.sidebar {
-        position: fixed;
-        top: 0;
-        left: 0;
-        height: 100vh;
-        z-index: 100;
-        transform: translateX(-100%);
-        transition: transform 0.25s ease;
-      }
-
+      nav.sidebar { position: fixed; top: 0; left: 0; height: 100vh; z-index: 100; transform: translateX(-100%); transition: transform 0.25s ease; }
       nav.sidebar.open { transform: translateX(0); }
-
       .layout { flex-direction: column; }
-
       main { width: 100%; }
-
       .hero { padding: 5rem 1.5rem 3rem; }
-
-      .section { padding: 3rem 1.5rem; }
-
-      .impressum { padding: 2rem 1.5rem 4rem; }
-
+      .view-header { padding: 2rem 1.5rem 1rem; }
+      .gallery-grid { padding: 1.5rem; }
+      .blog-grid { padding: 1.5rem; }
+      .simple-section { padding: 2rem 1.5rem; }
+      .impressum-section { padding: 2rem 1.5rem; }
       footer { padding: 0 1rem; font-size: 0.75rem; }
     }
   </style>
 </head>
 <body>
 
-  <!-- Hamburger (nur Mobile) -->
-  <button class="hamburger" id="hamburger" aria-label="Menue oeffnen">
+  <button class="hamburger" id="hamburger" aria-label="Menü öffnen">
     <span></span><span></span><span></span>
   </button>
 
   <div class="layout">
 
-    <!-- ══════════════════════════════════════════
-         NAVIGATION  ←── du bist hier (Zeile 204)
-         ══════════════════════════════════════════ -->
+    <!-- ── Sidebar ── -->
     <nav class="sidebar" id="sidebar">
       <div class="logo">Photo-Wolf</div>
       <div class="tagline">Licht · Moment · Abenteuer</div>
       <ul>
-        <li><a href="#home"        class="active"><span class="nav-icon">◈</span>Start</a></li>
-        <li><a href="/gallery/"               ><span class="nav-icon">◧</span>Galerie</a></li>
-        <li><a href="#blog"                   ><span class="nav-icon">✦</span>Blog</a></li>
-        <li><a href="#ausruestung"            ><span class="nav-icon">⌖</span>Ausrüstung</a></li>
-        <li><a href="#ueber"                  ><span class="nav-icon">◉</span>Über mich</a></li>
-        <li><a href="#kontakt"                ><span class="nav-icon">◎</span>Kontakt</a></li>
-        <li><a href="#impressum"              ><span class="nav-icon">·</span>Impressum</a></li>
+        <li><a href="#" data-view="home"        class="nav-link active"><span class="nav-icon">◈</span>Start</a></li>
+        <li><a href="#" data-view="galerie"     class="nav-link"><span class="nav-icon">◧</span>Galerie</a></li>
+        <li><a href="#" data-view="blog"        class="nav-link"><span class="nav-icon">✦</span>Blog</a></li>
+        <li><a href="#" data-view="ausruestung" class="nav-link"><span class="nav-icon">⌖</span>Ausrüstung</a></li>
+        <li><a href="#" data-view="ueber"       class="nav-link"><span class="nav-icon">◉</span>Über mich</a></li>
+        <li><a href="#" data-view="kontakt"     class="nav-link"><span class="nav-icon">◎</span>Kontakt</a></li>
+        <li><a href="#" data-view="impressum"   class="nav-link"><span class="nav-icon">·</span>Impressum</a></li>
       </ul>
     </nav>
 
-    <!-- ── Haupt-Content ── -->
-    <main>
+    <!-- ── Main ── -->
+    <main id="main">
 
-      <!-- Hero -->
-      <section class="hero" id="home">
-        <div class="hero-eyebrow">Fotografie · München & Umgebung</div>
-        <h1>Licht einfangen,<br>Momente festhalten.</h1>
-        <p>
-          Unterwegs mit der Canon R6 – zwischen Alpen, Stadtleben und dem T4 Syncro
-          irgendwo auf einer Schotterpiste.
-        </p>
-        <a href="/gallery/" class="btn">Zur Galerie →</a>
-        <div class="exif-bar">
-          <span>📷 <strong>Canon EOS R6</strong></span>
-          <span>🔭 <strong>16–200mm</strong> Brennweite</span>
-          <span>⚡ <strong>f/1.8 – f/4</strong></span>
-          <span>🚐 <strong>VW T4 Syncro</strong> als Basislager</span>
+      <!-- HOME -->
+      <div class="view active" id="view-home">
+        <section class="hero">
+          <div class="hero-eyebrow">Fotografie · München & Umgebung</div>
+          <h1>Licht einfangen,<br>Momente festhalten.</h1>
+          <p>Unterwegs mit der Canon R6 – zwischen Alpen, Stadtleben und dem T4 Syncro irgendwo auf einer Schotterpiste.</p>
+          <button class="btn" onclick="showView('galerie')">Zur Galerie →</button>
+          <div class="exif-bar">
+            <span>📷 <strong>Canon EOS R6</strong></span>
+            <span>🔭 <strong>16–200mm</strong> Brennweite</span>
+            <span>⚡ <strong>f/1.8 – f/4</strong></span>
+            <span>🚐 <strong>VW T4 Syncro</strong> als Basislager</span>
+          </div>
+        </section>
+      </div>
+
+      <!-- GALERIE -->
+      <div class="view" id="view-galerie">
+        <div class="view-header">
+          <h2>Galerie</h2>
+          <p>Klick auf ein Bild zum Vergrößern.</p>
         </div>
-      </section>
+        <div class="gallery-grid" id="gallery-grid"></div>
+      </div>
 
-      <!-- Galerie -->
-      <section class="section" id="galerie">
-        <h2>Galerie</h2>
-        <p>Hier kommen deine Bilder rein.</p>
-      </section>
+      <!-- BLOG -->
+      <div class="view" id="view-blog">
+        <div class="view-header">
+          <h2>Blog</h2>
+          <p>Geschichten hinter den Bildern – Locations, Lichtstimmungen, Pannen und Glücksmomente.</p>
+        </div>
+        <div class="blog-grid">
 
-      <!-- Blog -->
-      <section class="section" id="blog">
-        <h2>Blog</h2>
-        <p>Geschichten hinter den Bildern – Locations, Lichtstimmungen, Pannen und Glücksmomente.</p>
-      </section>
+          <div class="blog-card">
+            <div class="card-img-placeholder">📷</div>
+            <div class="card-body">
+              <div class="card-date">April 2026</div>
+              <div class="card-title">Erster Beitrag kommt bald</div>
+              <div class="card-excerpt">Hier entsteht bald der erste Blog-Eintrag. Geschichten vom T4, von Schotterpisten und dem richtigen Licht.</div>
+            </div>
+          </div>
 
-      <!-- Ausrüstung -->
-      <section class="section" id="ausruestung">
-        <h2>Ausrüstung</h2>
-        <p>Canon R6 · EF 16–35 f/4 L · EF 24–70 f/2.8 L · EF 70–200 f/2.8 L · EF 50 f/1.8 · LensBaby Composer Pro II</p>
-      </section>
+          <div class="blog-card">
+            <div class="card-img-placeholder">🏔</div>
+            <div class="card-body">
+              <div class="card-date">Demnächst</div>
+              <div class="card-title">Alpen im Morgenlicht</div>
+              <div class="card-excerpt">Platzhalter – hier kommt ein Bericht über eine Frühjahrstour in die Berge.</div>
+            </div>
+          </div>
 
-      <!-- Über mich -->
-      <section class="section" id="ueber">
-        <h2>Über mich</h2>
-        <p>Hobbyfotograf aus München. Immer auf der Suche nach dem richtigen Licht – und dem nächsten Abenteuer auf vier Rädern.</p>
-      </section>
+          <div class="blog-card">
+            <div class="card-img-placeholder">🚐</div>
+            <div class="card-body">
+              <div class="card-date">Demnächst</div>
+              <div class="card-title">Mit dem T4 Syncro unterwegs</div>
+              <div class="card-excerpt">Platzhalter – Schotterpisten, Pässe und das perfekte Basislager auf vier Rädern.</div>
+            </div>
+          </div>
 
-      <!-- Kontakt -->
-      <section class="section" id="kontakt">
-        <h2>Kontakt</h2>
-        <p>Am einfachsten erreichst du mich über <a href="https://bsky.app/profile/photo-wolf.bsky.social" target="_blank" rel="noopener">Bluesky</a> oder per <a href="mailto:rip2345@gmail.com">E-Mail</a>.</p>
-      </section>
+        </div>
+      </div>
 
-      <!-- Impressum -->
-      <div class="impressum" id="impressum">
-        <h2>Impressum</h2>
-        <p>
-          Andreas Wolf<br>
-          Privater Hobby-Fotografie-Blog – nicht kommerziell<br>
-          <br>
-          Kontakt: <a href="mailto:rip2345@gmail.com">rip2345@gmail.com</a><br>
-          Inhaltlich verantwortlich gemäß §18 Abs. 2 MStV: Andreas Wolf
-        </p>
+      <!-- AUSRÜSTUNG -->
+      <div class="view" id="view-ausruestung">
+        <div class="view-header">
+          <h2>Ausrüstung</h2>
+          <p>Was ich mit auf Tour nehme.</p>
+        </div>
+        <div class="simple-section">
+          <h3>Kamera</h3>
+          <ul>
+            <li>Canon EOS R6</li>
+          </ul>
+          <h3>Objektive</h3>
+          <ul>
+            <li>EF 16–35mm f/4 L IS USM</li>
+            <li>EF 24–70mm f/2.8 L USM</li>
+            <li>EF 70–200mm f/2.8 L IS USM</li>
+            <li>EF 50mm f/1.8</li>
+            <li>LensBaby Composer Pro II · 35 Sweet</li>
+          </ul>
+          <h3>Basislager</h3>
+          <ul>
+            <li>VW T4 Syncro · BJ 2003 · 102 PS · AXL-Motor</li>
+            <li>Pneumatische Differentialsperre</li>
+            <li>Original Standheizung (Wasser & Luft)</li>
+          </ul>
+        </div>
+      </div>
+
+      <!-- ÜBER MICH -->
+      <div class="view" id="view-ueber">
+        <div class="view-header">
+          <h2>Über mich</h2>
+          <p>Der Mensch hinter der Kamera.</p>
+        </div>
+        <div class="simple-section">
+          <p>Hobbyfotograf aus München. Aufgewachsen in den 70ern und 80ern, irgendwo zwischen Schwabing und den Alpen.</p>
+          <p>Immer auf der Suche nach dem richtigen Licht – und dem nächsten Abenteuer auf vier Rädern. Der T4 Syncro ist dabei Basislager, Fluchtfahrzeug und bester Reisegefährte in einem.</p>
+          <p>Fotografie ist für mich kein Wettbewerb, sondern ein Weg, Momente festzuhalten, die sonst einfach verschwinden würden.</p>
+        </div>
+      </div>
+
+      <!-- KONTAKT -->
+      <div class="view" id="view-kontakt">
+        <div class="view-header">
+          <h2>Kontakt</h2>
+          <p>Einfach melden.</p>
+        </div>
+        <div class="simple-section">
+          <p>Am einfachsten erreichst du mich über
+            <a href="https://bsky.app/profile/photo-wolf.bsky.social" target="_blank" rel="noopener">Bluesky</a>
+            oder per <a href="mailto:rip2345@gmail.com">E-Mail</a>.
+          </p>
+        </div>
+      </div>
+
+      <!-- IMPRESSUM -->
+      <div class="view" id="view-impressum">
+        <div class="view-header">
+          <h2>Impressum</h2>
+        </div>
+        <div class="impressum-section">
+          <p>
+            Andreas Wolf<br>
+            Privater Hobby-Fotografie-Blog – nicht kommerziell<br><br>
+            Kontakt: <a href="mailto:rip2345@gmail.com">rip2345@gmail.com</a><br>
+            Inhaltlich verantwortlich gemäß §18 Abs. 2 MStV: Andreas Wolf
+          </p>
+        </div>
       </div>
 
     </main>
@@ -411,34 +390,91 @@
         </svg>
         Bluesky
       </a>
-      <a href="#impressum">Impressum</a>
+      <a href="#" data-view="impressum" class="nav-link">Impressum</a>
     </div>
   </footer>
 
+  <!-- ── Lightbox ── -->
+  <div class="lightbox" id="lightbox">
+    <button class="lb-close" id="lb-close">✕</button>
+    <button class="lb-prev" id="lb-prev">‹</button>
+    <img src="" alt="" id="lb-img" />
+    <button class="lb-next" id="lb-next">›</button>
+    <div class="lb-caption" id="lb-caption"></div>
+  </div>
+
   <script>
-    // Hamburger
-    const btn = document.getElementById('hamburger');
-    const sidebar = document.getElementById('sidebar');
-    btn.addEventListener('click', () => sidebar.classList.toggle('open'));
-    sidebar.querySelectorAll('a').forEach(a => {
-      a.addEventListener('click', () => sidebar.classList.remove('open'));
+    // ── Galerie-Bilder ──────────────────────────────────────────
+    const basePath = "/assets/images/gallery/archive/";
+    const images = [
+      "1.jpg","2.jpg","3.jpg","4.jpg","5.jpg",
+      "6.jpg","7.jpg","8.jpg","9.jpg"
+    ];
+
+    // Grid aufbauen
+    const grid = document.getElementById('gallery-grid');
+    images.forEach((name, idx) => {
+      const src = basePath + name;
+      const fig = document.createElement('figure');
+      fig.innerHTML = `<img src="${src}" alt="Foto ${idx+1}" loading="lazy"><figcaption>${name}</figcaption>`;
+      fig.addEventListener('click', () => openLightbox(idx));
+      grid.appendChild(fig);
     });
 
-    // Aktiven Nav-Link beim Scrollen hervorheben
-    const sections = document.querySelectorAll('section[id], div[id]');
-    const navLinks = document.querySelectorAll('nav.sidebar a');
+    // ── Lightbox ────────────────────────────────────────────────
+    let currentIdx = 0;
+    const lb       = document.getElementById('lightbox');
+    const lbImg    = document.getElementById('lb-img');
+    const lbCap    = document.getElementById('lb-caption');
 
-    const observer = new IntersectionObserver(entries => {
-      entries.forEach(entry => {
-        if (entry.isIntersecting) {
-          navLinks.forEach(l => l.classList.remove('active'));
-          const active = document.querySelector(`nav.sidebar a[href="#${entry.target.id}"]`);
-          if (active) active.classList.add('active');
-        }
+    function openLightbox(idx) {
+      currentIdx = idx;
+      lbImg.src = basePath + images[idx];
+      lbCap.textContent = `${idx + 1} / ${images.length}  ·  ${images[idx]}`;
+      lb.classList.add('open');
+      document.body.style.overflow = 'hidden';
+    }
+
+    function closeLightbox() {
+      lb.classList.remove('open');
+      document.body.style.overflow = '';
+    }
+
+    document.getElementById('lb-close').addEventListener('click', closeLightbox);
+    document.getElementById('lb-prev').addEventListener('click', () => openLightbox((currentIdx - 1 + images.length) % images.length));
+    document.getElementById('lb-next').addEventListener('click', () => openLightbox((currentIdx + 1) % images.length));
+
+    lb.addEventListener('click', e => { if (e.target === lb) closeLightbox(); });
+
+    document.addEventListener('keydown', e => {
+      if (!lb.classList.contains('open')) return;
+      if (e.key === 'Escape')      closeLightbox();
+      if (e.key === 'ArrowLeft')   openLightbox((currentIdx - 1 + images.length) % images.length);
+      if (e.key === 'ArrowRight')  openLightbox((currentIdx + 1) % images.length);
+    });
+
+    // ── View-Navigation ─────────────────────────────────────────
+    function showView(viewId) {
+      document.querySelectorAll('.view').forEach(v => v.classList.remove('active'));
+      document.querySelectorAll('.nav-link').forEach(l => l.classList.remove('active'));
+      document.getElementById('view-' + viewId).classList.add('active');
+      document.querySelectorAll(`[data-view="${viewId}"]`).forEach(l => l.classList.add('active'));
+      document.getElementById('main').scrollTop = 0;
+      sidebar.classList.remove('open');
+    }
+
+    document.querySelectorAll('.nav-link').forEach(link => {
+      link.addEventListener('click', e => {
+        e.preventDefault();
+        const view = link.dataset.view;
+        if (view) showView(view);
       });
-    }, { threshold: 0.4 });
+    });
 
-    sections.forEach(s => observer.observe(s));
+    // ── Hamburger ───────────────────────────────────────────────
+    const hamburger = document.getElementById('hamburger');
+    const sidebar   = document.getElementById('sidebar');
+    hamburger.addEventListener('click', () => sidebar.classList.toggle('open'));
   </script>
 
 </body>
