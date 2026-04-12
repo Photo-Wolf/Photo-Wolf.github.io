@@ -101,7 +101,8 @@
     }
     .gallery-grid figure:hover { transform: scale(1.02); border-color: var(--accent); }
     .gallery-grid figure img { width: 100%; height: 220px; object-fit: cover; display: block; background: var(--border); }
-    .gallery-grid figcaption { padding: 8px 12px; font-size: 11px; color: var(--muted); position: absolute; left: 8px; top: 8px; }
+    /* Overlay/Captions ausblenden (falls vorhanden) */
+    .gallery-grid figure figcaption { display: none !important; }
 
     .blog-grid {
       display: grid;
@@ -227,7 +228,7 @@
           <p>Unterwegs mit der Canon R6 – zwischen Alpen, Stadtleben irgendwo auf einer Schotterpiste.</p>
           <p><strong>TFP-Shootings (Time for Print)</strong></p>
           <p>Ich bin immer auf der Suche nach spannenden Gesichtern und neuen Projekten zur Erweiterung meines Portfolios. Wenn du Lust auf ein gemeinsames Projekt auf TFP-Basis hast, melde dich gerne bei mir per <a href="mailto:rip2345@gmail.com">E-Mail</a>!</p>
-          <button class="btn" onclick="document.querySelector('[data-view=galerie]').click()">Zur Galerie →</button>
+          <button class="btn" onclick="document.querySelector('[data-view=&quot;galerie&quot;]').click()">Zur Galerie →</button>
           <div class="exif-bar">
             <span>📷 <strong>Canon EOS R6</strong></span>
             <span>🔭 <strong>16–200mm</strong> Brennweite</span>
@@ -257,7 +258,7 @@
       <!-- ARTIKEL -->
       <div class="view" id="view-article">
         <div class="article-container">
-          <span class="back-link" onclick="document.querySelector('[data-view=blog]').click()">← Zurück zum Blog</span>
+          <span class="back-link" onclick="document.querySelector('[data-view=&quot;blog&quot;]').click()">← Zurück zum Blog</span>
           <article>
             <header class="article-header">
               <div class="article-meta" id="art-date"></div>
@@ -268,7 +269,6 @@
         </div>
       </div>
 
-      <!-- restliche Views (Ausrüstung, Über, Kontakt, TFP, Impressum) unverändert -->
       <!-- AUSRÜSTUNG -->
       <div class="view" id="view-ausruestung">
         <div class="view-header"><h2>Ausrüstung</h2><p>Was ich mit auf Tour nehme.</p></div>
@@ -387,12 +387,12 @@
       async function resolveImagePath(path) {
         if (!path) return null;
         // Absolute URL?
-        if (path.startsWith('http://') || path.startsWith('https://')) {
+        if (/^https?:\/\//i.test(path)) {
           const ok = await testImage(path);
           return ok ? path : null;
         }
         // Remove leading slash if vorhanden
-        let p = path.replace(/^\/+/, '');
+        const p = path.replace(/^\/+/, '');
         // First try given path directly
         if (await testImage(p)) return p;
         // Then try with galleryCandidates if filename only
@@ -401,6 +401,7 @@
           const candidate = base + name;
           if (await testImage(candidate)) return candidate;
         }
+        console.warn("resolveImagePath: kein Bild gefunden für", path);
         return null;
       }
 
@@ -412,13 +413,12 @@
             const name = galleryFiles[i];
             const src = await findGallerySrcFor(name);
             const fig = document.createElement('figure');
-            const fig = document.createElement('figure');
             const img = document.createElement('img');
             img.alt = `Foto ${i + 1}`;
             img.loading = 'lazy';
             img.src = src || placeholderDataUrl;
             img.addEventListener('error', () => { img.src = placeholderDataUrl; });
-            fig.appendChild(caption);
+            // keine Caption mehr -> kein Overlay
             fig.appendChild(img);
             fig.addEventListener('click', () => {
               if (img.src && img.src !== placeholderDataUrl) openLightboxBySrc(img.src, i);
@@ -449,7 +449,6 @@
       document.getElementById('lb-close').addEventListener('click', closeLightbox);
       document.getElementById('lb-prev').addEventListener('click', () => {
         const prev = (lightboxIndex - 1 + galleryFiles.length) % galleryFiles.length;
-        // try to open prev image element src
         const img = document.querySelectorAll('.gallery-grid img')[prev];
         if (img) openLightboxBySrc(img.src, prev);
       });
@@ -509,21 +508,18 @@
         }
 
         grid.innerHTML = "";
-        // entries in insertion order
         for (const slug of Object.keys(data)) {
           const post = data[slug];
           const card = document.createElement('div');
           card.className = 'blog-card';
           card.id = 'post-' + slug;
 
-          // Thumbnail resolution: try resolveImagePath(post.image) or fallback placeholder
           let thumbSrc = null;
           if (post.image) {
             thumbSrc = await resolveImagePath(post.image);
           }
           if (!thumbSrc) thumbSrc = placeholderDataUrl;
 
-          // Build card
           card.innerHTML = `
             <img class="card-img" src="${thumbSrc}" alt="${(post.title || '').replace(/"/g,'')}" />
             <div class="card-body">
@@ -538,14 +534,12 @@
         showView('blog');
       }
 
-      // Open article detail (needs blogDataCache loaded)
       function openArticle(slug) {
         if (!blogDataCache) return console.warn('Blog-Cache leer');
         const post = blogDataCache[slug];
         if (!post) return;
         document.getElementById('art-title').textContent = post.title || '';
         document.getElementById('art-date').textContent = post.date || '';
-        // content can contain HTML — trusted because you create it
         document.getElementById('art-content').innerHTML = post.content || '';
         showView('article');
       }
@@ -566,7 +560,7 @@
           const view = link.dataset.view;
           if (!view) return;
           if (view === 'blog') {
-            await loadBlogData(); // assure cache
+            await loadBlogData();
             await showBlog();
           } else {
             showView(view);
@@ -577,15 +571,11 @@
       // --- Helper for resolving blog image path (tries provided path, then galleryCandidates)
       async function resolveImagePath(path) {
         if (!path) return null;
-        // if absolute URL
         if (/^https?:\/\//i.test(path)) {
           return (await testImage(path)) ? path : null;
         }
-        // Normalize: remove leading slashes
         const normalized = path.replace(/^\/+/, '');
-        // Try direct
         if (await testImage(normalized)) return normalized;
-        // if it looks like just a filename, try galleryCandidates
         const filename = normalized.split('/').pop();
         for (const base of galleryCandidates) {
           const candidate = base + filename;
