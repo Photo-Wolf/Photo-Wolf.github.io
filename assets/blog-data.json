@@ -2,15 +2,15 @@
   "mein-erster-beitrag": {
     "title": "Mein erster Blog-Beitrag",
     "date": "2026-04-10",
-    "excerpt": "Das ist eine kurze Zusammenfassung meines ersten Beitrags.",
-    "content": "<p>Hier steht der volle Inhalt des Blog-Artikels mit HTML.</p><p>Du kannst auch Bilder einfügen: <img src='assets/images/blog/bild1.jpg' alt='Bild'></p>",
-    "image": "assets/images/blog/thumbnail1.jpg"
+    "excerpt": "Kurzer Einblick: Erste Tour mit der R6 — Licht, Panne und Glücksmoment.",
+    "content": "<p>Das war eine kalte Morgenrunde an einem See nahe München. Ich hatte die Canon R6 und das 16–35 f/4 dabei. Die Aufnahme entstand kurz nach Sonnenaufgang, bei feinem Dunst.</p><p>Hier ein Bild aus dem Beitrag:</p><p><img src=\"assets/images/gallery/archive/100.jpg\" alt=\"See bei Sonnenaufgang\"></p><p>Mehr technische Details und Gedanken zur Bearbeitung folgen.</p>",
+    "image": "assets/images/gallery/archive/100.jpg"
   },
   "zweiter-beitrag": {
-    "title": "Noch ein Beitrag",
+    "title": "LensBaby-Experiment am Stadtrand",
     "date": "2026-04-11",
-    "excerpt": "Kurzfassung des zweiten Beitrags.",
-    "content": "<p>Voller Text des zweiten Beitrags.</p>",
-    "image": "assets/images/blog/thumbnail2.jpg"
+    "excerpt": "Ein kurzer Bericht über Spielen mit dem LensBaby Composer — weiche Kanten, harte Kontraste.",
+    "content": "<p>Das LensBaby liefert spezielle Look-and-Feel-Bilder — nicht für jede Situation, aber genial für kreative Projekte.</p><p><img src=\"assets/images/gallery/archive/111.jpg\" alt=\"LensBaby Testaufnahme\"></p><p>Tipps: Blende 2.8, feste Brennweite, manuelles Fokussieren.</p>",
+    "image": "assets/images/gallery/archive/111.jpg"
   }
 }
