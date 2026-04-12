@@ -122,7 +122,7 @@
     .blog-card .card-title { font-size: 1.1rem; font-weight: 600; color: var(--text); margin-bottom: 0.5rem; }
     .blog-card .card-excerpt { font-size: 0.88rem; color: var(--muted); line-height: 1.6; }
 
-    /* DETAIL VIEW ARTIKEL /
+    /* DETAIL VIEW ARTIKEL */
     .article-container { max-width: 800px; margin: 0 auto; padding: 4rem 2rem; }
     .back-link { margin-bottom: 2rem; display: inline-block; font-size: 0.9rem; letter-spacing: 0.05em; text-transform: uppercase; color: var(--muted); cursor: pointer; }
     .back-link:hover { color: var(--accent); }
@@ -232,4 +232,363 @@
         <li><a href="#" data-view="home"        class="nav-link active"><span class="nav-icon">◈</span>Start</a></li>
         <li><a href="#" data-view="galerie"     class="nav-link"><span class="nav-icon">◧</span>Galerie</a></li>
         <li><a href="#" data-view="blog"        class="nav-link"><span class="nav-icon">✦</span>Blog</a></li>
-        <li><a href="#" data-view="ausruestung" class="nav-link">
+        <li><a href="#" data-view="ausruestung" class="nav-link"><span class="nav-icon">⌖</span>Ausrüstung</a></li>
+        <li><a href="#" data-view="tfp" class="nav-link"><span class="nav-icon">✱</span>TFP</a></li>
+        <li><a href="#" data-view="ueber"       class="nav-link"><span class="nav-icon">◉</span>Über mich</a></li>
+        <li><a href="#" data-view="kontakt"     class="nav-link"><span class="nav-icon">◎</span>Kontakt</a></li>
+        <li><a href="#" data-view="impressum"   class="nav-link"><span class="nav-icon">·</span>Impressum</a></li>
+      </ul>
+    </nav>
+
+    <!-- ── Main ── -->
+    <main id="main">
+
+      <!-- HOME -->
+      <div class="view active" id="view-home">
+        <section class="hero">
+          <div class="hero-eyebrow">Fotografie · München & Umgebung</div>
+          <h1>Licht einfangen,<br>Momente festhalten.</h1>
+          <p>Unterwegs mit der Canon R6 – zwischen Alpen, Stadtleben irgendwo auf einer Schotterpiste.</p>
+          <p></p>
+          <p><strong>TFP-Shootings (Time for Print)</strong></p>
+          <p>Ich bin immer auf der Suche nach spannenden Gesichtern und neuen Projekten zur Erweiterung meines Portfolios. Wenn du Lust auf ein gemeinsames Projekt auf TFP-Basis hast, melde dich gerne bei mir per <a href="mailto:rip2345@gmail.com">E-Mail</a>!</p>
+          <button class="btn" onclick="document.querySelector('[data-view=\"galerie\"]').click()">Zur Galerie →</button>
+          <div class="exif-bar">
+            <span>📷 <strong>Canon EOS R6</strong></span>
+            <span>🔭 <strong>16–200mm</strong> Brennweite</span>
+            <span>⚡ <strong>f/1.8 – f/4</strong></span>
+          </div>
+        </section>
+      </div>
+
+      <!-- GALERIE -->
+      <div class="view" id="view-galerie">
+        <div class="view-header">
+          <h2>Galerie</h2>
+          <p>Klick auf ein Bild zum Vergrößern.</p>
+        </div>
+        <div class="gallery-grid" id="gallery-grid"></div>
+      </div>
+
+      <!-- BLOG -->
+      <div class="view" id="view-blog">
+        <div class="view-header">
+          <h2>Blog</h2>
+          <p>Geschichten hinter den Bildern – Locations, Lichtstimmungen, Pannen und Glücksmomente.</p>
+        </div>
+        <div class="blog-grid" id="blog-grid">
+          <!-- Blog-Karten werden hier dynamisch eingefügt -->
+        </div>
+      </div>
+
+      <!-- ARTIKEL DETAILANSICHT -->
+      <div class="view" id="view-article">
+        <div class="article-container">
+          <span class="back-link" onclick="document.querySelector('[data-view=\'blog\']').click()">← Zurück zum Blog</span>
+          <article>
+            <header class="article-header">
+              <div class="article-meta" id="art-date"></div>
+              <h1 id="art-title"></h1>
+            </header>
+            <div class="article-content" id="art-content"></div>
+          </article>
+        </div>
+      </div>
+
+      <!-- AUSRÜSTUNG -->
+      <div class="view" id="view-ausruestung">
+        <div class="view-header">
+          <h2>Ausrüstung</h2>
+          <p>Was ich mit auf Tour nehme.</p>
+        </div>
+        <div class="simple-section">
+          <h3>Kamera</h3>
+          <ul>
+            <li>Canon EOS R6</li>
+          </ul>
+          <h3>Objektive</h3>
+          <ul>
+            <li>Canon EF 16–35mm f/4 L IS USM</li>
+            <li>Canon EF 24–70mm f/2.8 L USM</li>
+            <li>Canon EF 70–200mm f/2.8 L IS USM</li>
+            <li>Canon EF 50mm f/1.8</li>
+            <li>LensBaby Composer Pro II · 35 1.8 Sweet</li>
+          </ul>
+        </div>
+      </div>
+
+      <!-- ÜBER MICH -->
+      <div class="view" id="view-ueber">
+        <div class="view-header">
+          <h2>Über mich</h2>
+          <p>Der Mensch hinter der Kamera.</p>
+        </div>
+        <div class="simple-section">
+          <p>Hobbyfotograf aus München. Aufgewachsen in den 70ern und 80ern, irgendwo zwischen Schwabing und den Alpen.</p>
+          <p>Immer auf der Suche nach dem richtigen Licht – und dem nächsten Abenteuer auf vier Rädern.</p>
+          <p>Fotografie ist für mich kein Wettbewerb, sondern ein Weg, Momente festzuhalten, die sonst einfach verschwinden würden.</p>
+        </div>
+      </div>
+
+      <!-- KONTAKT -->
+      <div class="view" id="view-kontakt">
+        <div class="view-header">
+          <h2>Kontakt</h2>
+          <p>Einfach melden.</p>
+        </div>
+        <div class="simple-section">
+          <p>Am einfachsten erreichst Du mich über
+            <a href="https://bsky.app/profile/photo-wolf.bsky.social" target="_blank" rel="noopener">Bluesky</a>
+            oder per <a href="mailto:rip2345@gmail.com">E-Mail</a>.
+          </p>
+        </div>
+      </div>
+
+      <!-- TFP -->
+      <div class="view" id="view-tfp">
+        <div class="view-header">
+          <h2>TFP – Was das bedeutet</h2>
+          <p>Kurz erklärt: Time for Print — gegenseitiger Austausch von Zeit gegen Bilder (keine Bezahlung).</p>
+        </div>
+        <div class="simple-section">
+          <p>Bei einem TFP-Shooting tauschen wir Zeit und Bilder: Du stehst vor der Kamera, ich fotografiere und bearbeite die Ergebnisse. Du bekommst Bilder für dein Portfolio und ich erweitere mein Portfolio — beide Seiten profitieren.</p>
+
+          <h3>Ablauf</h3>
+          <ul>
+            <li>Anfrage & Ideenabgleich (Motiv, Styling, Location)</li>
+            <li>Termin & Treffpunkt vereinbaren (Indoor oder Outdoor)</li>
+            <li>Shooting (typisch 45–90 Minuten, je nach Konzept)</li>
+            <li>Auswahl & Retusche: Ich sende dir eine Auswahl als Downloadlink</li>
+            <li>Übergabe der finalen Bilder in webtauglicher Auflösung; größere Dateien auf Anfrage</li>
+          </ul>
+
+          <h3>Rechte & Nutzung</h3>
+          <p>Du erhältst einfache Nutzungsrechte zur Präsentation in Portfolio, Social Media und für Bewerbungen. Kommerzielle Nutzung oder Weiterverkauf bedarf einer gesonderten Vereinbarung. Bei Bedarf unterschreiben wir vorab ein Model-Release.</p>
+
+          <h3>Was ich biete:</h3>
+          <ul>
+            <li>Professionelles Equipment (Canon R6 & diverse L-Objektive)</li>
+            <li>Kreative Bildideen (von klassisch bis LensBaby-Art)</li>
+            <li>Entspannte Atmosphäre beim Shooting (Indoor/Outdoor)</li>
+            <li>Hochwertig bearbeitete Bilder für Dein Portfolio</li>
+          </ul>
+
+          <h3>Was Du mitbringst:</h3>
+          <ul>
+            <li>Outfits, die zum Konzept passen (nach Belieben oder Absprache)</li>
+            <li>Falls nötig: eigene Visagistin / Make-up oder ich organisiere Basics (auf Anfrage)</li>
+            <li>Pünktlichkeit und gute Laune</li>
+          </ul>
+
+          <h3>Sonstiges</h3>
+          <p>TFP ist unentgeltlich. Bei weiter Anfahrt klären wir ggf. Fahrtkosten vorab. Wenn du ein Moodboard oder Referenzbilder hast: sehr gern — das hilft bei der Vorbereitung.</p>
+
+          <p>
+            Interesse? Schreib mir direkt über <a href="mailto:rip2345@gmail.com">E-Mail</a> oder klick im Menü auf <strong>Kontakt</strong>.
+          </p>
+        </div>
+      </div>
+
+      <!-- IMPRESSUM -->
+      <div class="view" id="view-impressum">
+        <div class="view-header">
+          <h2>Impressum</h2>
+        </div>
+        <div class="impressum-section">
+          <p>
+            Andreas Wolf<br>
+            Privater Hobby-Fotografie-Blog – nicht kommerziell<br><br>
+            Kontakt: <a href="mailto:rip2345@gmail.com">rip2345@gmail.com</a><br>
+            Inhaltlich verantwortlich gemäß §18 Abs. 2 MStV: Andreas Wolf
+          </p>
+        </div>
+      </div>
+
+    </main>
+  </div>
+
+  <!-- ── Footer ── -->
+  <footer>
+    <span>© 2026 Photo-Wolf · Andreas Wolf</span>
+    <div class="footer-links">
+      <a href="https://bsky.app/profile/photo-wolf.bsky.social" target="_blank" rel="noopener">
+        <svg class="bsky-icon" viewBox="0 0 360 320" xmlns="http://www.w3.org/2000/svg">
+          <path d="M180 142c-16-72-75-120-120-120C18 22 0 60 0 90c0 42 28 70 60 80-40 8-60 30-60 60 0 36 30 68 80 68 36 0 72-18 100-60 28 42 64 60 100 60 50 0 80-32 80-68 0-30-20-52-60-60 32-10 60-38 60-80 0-30-18-68-60-68-45 0-104 48-120 120z"/>
+        </svg>
+        Bluesky
+      </a>
+      <a href="#" data-view="impressum" class="nav-link">Impressum</a>
+    </div>
+  </footer>
+
+  <!-- ── Lightbox ── -->
+  <div class="lightbox" id="lightbox">
+    <button class="lb-close" id="lb-close">✕</button>
+    <button class="lb-prev" id="lb-prev">‹</button>
+    <img src="" alt="" id="lb-img" />
+    <button class="lb-next" id="lb-next">›</button>
+    <div class="lb-caption" id="lb-caption"></div>
+  </div>
+
+  <script>
+    document.addEventListener('DOMContentLoaded', () => {
+      // Pfade: relativ zum Ort der index.html
+      const galleryBase = "assets/images/gallery/";
+      // Passe ggf. an, falls deine Galerie in einem Unterordner "archive" liegt:
+      // const galleryBase = "assets/images/gallery/archive/";
+
+      const images = [
+        "10.jpg","11.jpg","12.jpg","13.jpg","14.jpg",
+        "15.jpg","16.jpg","17.jpg","18.jpg","30.jpg",
+        "100.jpg","111.jpg","112.jpg","113.jpg"
+      ];
+
+      // Elemente
+      const hamburger = document.getElementById('hamburger');
+      const sidebar = document.getElementById('sidebar');
+      const grid = document.getElementById('gallery-grid');
+
+      // Galerie aufbauen
+      if (grid) {
+        images.forEach((name, idx) => {
+          const src = galleryBase + name;
+          const fig = document.createElement('figure');
+          fig.innerHTML = `<img src="${src}" alt="Foto ${idx+1}" loading="lazy">`;
+          fig.addEventListener('click', () => openLightbox(idx));
+          grid.appendChild(fig);
+        });
+      }
+
+      // Lightbox
+      let currentIdx = 0;
+      const lb = document.getElementById('lightbox');
+      const lbImg = document.getElementById('lb-img');
+      const lbCap = document.getElementById('lb-caption');
+
+      function openLightbox(idx) {
+        currentIdx = idx;
+        lbImg.src = galleryBase + images[idx];
+        lbCap.textContent = `${idx + 1} / ${images.length}`;
+        lb.classList.add('open');
+        document.body.style.overflow = 'hidden';
+      }
+      function closeLightbox() {
+        lb.classList.remove('open');
+        document.body.style.overflow = '';
+      }
+
+      document.getElementById('lb-close').addEventListener('click', closeLightbox);
+      document.getElementById('lb-prev').addEventListener('click', () => openLightbox((currentIdx - 1 + images.length) % images.length));
+      document.getElementById('lb-next').addEventListener('click', () => openLightbox((currentIdx + 1) % images.length));
+      lb.addEventListener('click', e => { if (e.target === lb) closeLightbox(); });
+      document.addEventListener('keydown', e => {
+        if (!lb.classList.contains('open')) return;
+        if (e.key === 'Escape') closeLightbox();
+        if (e.key === 'ArrowLeft') openLightbox((currentIdx - 1 + images.length) % images.length);
+        if (e.key === 'ArrowRight') openLightbox((currentIdx + 1) % images.length);
+      });
+
+      // Views + Navigation
+      function showView(viewId) {
+        document.querySelectorAll('.view').forEach(v => v.classList.remove('active'));
+        document.querySelectorAll('.nav-link').forEach(l => l.classList.remove('active'));
+        const activeView = document.getElementById('view-' + viewId);
+        if (activeView) activeView.classList.add('active');
+        document.querySelectorAll(`[data-view="${viewId}"]`).forEach(l => l.classList.add('active'));
+        document.getElementById('main').scrollTop = 0;
+        sidebar.classList.remove('open');
+      }
+
+      // Blog: dynamisch laden
+      let blogDataCache = null;
+
+      async function loadBlogData() {
+        if (blogDataCache) return blogDataCache;
+        try {
+          const resp = await fetch("assets/blog-data.json");
+          if (!resp.ok) throw new Error("Fehler beim Laden der Blog-Datei");
+          blogDataCache = await resp.json();
+          return blogDataCache;
+        } catch (err) {
+          console.error(err);
+          return null;
+        }
+      }
+
+      async function showBlog() {
+        const blogGrid = document.getElementById('blog-grid');
+        if (!blogGrid) return;
+
+        blogGrid.innerHTML = `<div style="padding:2rem;color:var(--muted)">Lade Beiträge…</div>`;
+        const data = await loadBlogData();
+        if (!data) {
+          blogGrid.innerHTML = `<div style="padding:2rem;color:var(--muted)">Blog-Daten konnten nicht geladen werden. Prüfe assets/blog-data.json</div>`;
+          showView('blog');
+          return;
+        }
+
+        blogGrid.innerHTML = "";
+        for (const slug of Object.keys(data)) {
+          const post = data[slug];
+          const card = document.createElement('div');
+          card.className = 'blog-card';
+          card.id = 'post-' + slug;
+          // Bild als background (oder Platzhalter)
+          const imgStyle = post.image ? `style="background-image:url('${post.image}')" ` : '';
+          card.innerHTML = `
+            <div class="card-img" ${imgStyle}></div>
+            <div class="card-body">
+              <div class="card-date">${post.date || ''}</div>
+              <div class="card-title">${post.title || ''}</div>
+              <div class="card-excerpt">${post.excerpt || ''}</div>
+            </div>
+          `;
+          blogGrid.appendChild(card);
+        }
+
+        showView('blog');
+      }
+
+      function openArticle(slug) {
+        if (!blogDataCache) return;
+        const post = blogDataCache[slug];
+        if (!post) return;
+        document.getElementById('art-title').textContent = post.title || '';
+        document.getElementById('art-date').textContent = post.date || '';
+        document.getElementById('art-content').innerHTML = post.content || '';
+        showView('article');
+      }
+
+      // Global click => Artikel-Öffnen (Event Delegation)
+      document.addEventListener('click', e => {
+        const card = e.target.closest('.blog-card');
+        if (card && card.id && card.id.startsWith('post-')) {
+          const slug = card.id.replace('post-', '');
+          openArticle(slug);
+        }
+      });
+
+      // Navigation: single handler
+      document.querySelectorAll('.nav-link').forEach(link => {
+        link.addEventListener('click', async (e) => {
+          e.preventDefault();
+          const view = link.dataset.view;
+          if (!view) return;
+          if (view === 'blog') {
+            await loadBlogData(); // lade Daten in Cache (openArticle benötigt cache)
+            // ensure cache available for openArticle
+            if (!blogDataCache) blogDataCache = await loadBlogData();
+            await showBlog();
+          } else {
+            showView(view);
+          }
+        });
+      });
+
+      // Hamburger
+      hamburger.addEventListener('click', () => sidebar.classList.toggle('open'));
+    });
+  </script>
+
+</body>
+</html>
