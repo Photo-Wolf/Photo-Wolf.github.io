@@ -1,0 +1,16 @@
+{
+  "mein-erster-beitrag": {
+    "title": "Mein erster Blog-Beitrag",
+    "date": "2026-04-10",
+    "excerpt": "Das ist eine kurze Zusammenfassung meines ersten Beitrags.",
+    "content": "<p>Hier steht der volle Inhalt des Blog-Artikels mit HTML.</p><p>Du kannst auch Bilder einfügen: <img src='assets/images/blog/bild1.jpg' alt='Bild'></p>",
+    "image": "assets/images/blog/thumbnail1.jpg"
+  },
+  "zweiter-beitrag": {
+    "title": "Noch ein Beitrag",
+    "date": "2026-04-11",
+    "excerpt": "Kurzfassung des zweiten Beitrags.",
+    "content": "<p>Voller Text des zweiten Beitrags.</p>",
+    "image": "assets/images/blog/thumbnail2.jpg"
+  }
+}

@@ -423,9 +423,7 @@
   </div>
 
   <!-- ── Artikel Daten Speicher ── -->
-  <script type="application/json" id="blog-data">
-    
-  </script>
+  
 
   <!-- ── Footer ── -->
   <footer>
@@ -522,28 +520,80 @@
       });
     });
 
-    // ── Blog-Detail-Logik ───────────────────────────────────────
-    document.addEventListener('click', e => {
-      const card = e.target.closest('.blog-card');
-      if (card && card.id && card.id.startsWith('post-')) {
-        const slug = card.id.replace('post-', '');
-        openArticle(slug);
-      }
-    });
+    // ── Neue JSON-Blog-Funktion ────────────────────────────────────────────────
+    let blogDataCache = null;
 
-    function openArticle(slug) {
-      const dataStr = document.getElementById('blog-data').textContent;
-      try {
-        const blogData = JSON.parse(dataStr);
-        const post = blogData[slug];
-        if (post) {
-          document.getElementById('art-title').textContent = post.title;
-          document.getElementById('art-date').textContent = post.date;
-          document.getElementById('art-content').innerHTML = post.content;
-          showView('article');
-        }
-      } catch(e) { console.error("Fehler beim Laden der Blog-Daten", e); }
+async function loadBlogData() {
+  if (blogDataCache) return blogDataCache;
+  try {
+    const response = await fetch('/assets/blog-data.json');
+    if (!response.ok) throw new Error('Blog-Daten konnten nicht geladen werden');
+    blogDataCache = await response.json();
+    return blogDataCache;
+  } catch (e) {
+    console.error(e);
+    return null;
+  }
+}
+
+async function showBlog() {
+  const blogData = await loadBlogData();
+  if (!blogData) return;
+
+  const blogGrid = document.querySelector('#view-blog .blog-grid');
+  blogGrid.innerHTML = '';
+
+  for (const slug in blogData) {
+    const post = blogData[slug];
+    const card = document.createElement('div');
+    card.className = 'blog-card';
+    card.id = 'post-' + slug;
+    card.innerHTML = `
+      <div class="card-img" style="background-image: url('${post.image || ''}')"></div>
+      <div class="card-body">
+        <div class="card-date">${post.date}</div>
+        <div class="card-title">${post.title}</div>
+        <div class="card-excerpt">${post.excerpt}</div>
+      </div>
+    `;
+    blogGrid.appendChild(card);
+  }
+
+  showView('blog');
+}
+
+// Blog-Artikel öffnen (Detailansicht)
+document.addEventListener('click', e => {
+  const card = e.target.closest('.blog-card');
+  if (card && card.id && card.id.startsWith('post-')) {
+    const slug = card.id.replace('post-', '');
+    openArticle(slug);
+  }
+});
+
+function openArticle(slug) {
+  if (!blogDataCache) return;
+  const post = blogDataCache[slug];
+  if (post) {
+    document.getElementById('art-title').textContent = post.title;
+    document.getElementById('art-date').textContent = post.date;
+    document.getElementById('art-content').innerHTML = post.content;
+    showView('article');
+  }
+}
+
+// Navigation anpassen, damit Blog erst geladen wird
+document.querySelectorAll('.nav-link').forEach(link => {
+  link.addEventListener('click', async e => {
+    e.preventDefault();
+    const view = link.dataset.view;
+    if (view === 'blog') {
+      await showBlog();
+    } else {
+      showView(view);
     }
+  });
+});
 
     // ── Hamburger ───────────────────────────────────────────────
     const hamburger = document.getElementById('hamburger');
