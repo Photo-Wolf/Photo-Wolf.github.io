@@ -412,8 +412,7 @@
             const name = galleryFiles[i];
             const src = await findGallerySrcFor(name);
             const fig = document.createElement('figure');
-            const caption = document.createElement('figcaption');
-            caption.textContent = `Foto ${i + 1}`;
+            const fig = document.createElement('figure');
             const img = document.createElement('img');
             img.alt = `Foto ${i + 1}`;
             img.loading = 'lazy';
