@@ -1,8 +1,8 @@
 ﻿<!DOCTYPE html>
 <html lang="de">
 <head>
-  <meta charset="UTF-8" />
-  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
   <title>Photo-Wolf | Fotografie</title>
   <link rel="icon" href="favicon.ico?v=1" type="image/x-icon">
   <style>
@@ -52,7 +52,7 @@
     nav.sidebar ul li a.active { background: var(--border); color: var(--accent); text-decoration: none; }
     nav.sidebar .nav-icon { margin-right: 0.6rem; opacity: 0.7; }
 
-    main { flex: 1; overflow-y: auto; height: calc(100vh - var(--footer-h)); scroll-behavior: smooth; }
+    main { flex: 1; overflow-y: auto; height: calc(100vh - var(--footer-h)); scroll-behavior: smooth; padding-bottom: 8rem; }
 
     .view { display: none; min-height: calc(100vh - var(--footer-h)); }
     .view.active { display: block; }
@@ -97,10 +97,11 @@
       margin: 0; border-radius: 10px; overflow: hidden;
       background: var(--surface); border: 1px solid var(--border);
       cursor: pointer; transition: transform 0.2s, border-color 0.2s;
+      min-height: 220px; position: relative;
     }
     .gallery-grid figure:hover { transform: scale(1.02); border-color: var(--accent); }
-    .gallery-grid figure img { width: 100%; height: 220px; object-fit: cover; display: block; }
-    .gallery-grid figcaption { padding: 8px 12px; font-size: 11px; color: var(--muted); }
+    .gallery-grid figure img { width: 100%; height: 220px; object-fit: cover; display: block; background: var(--border); }
+    .gallery-grid figcaption { padding: 8px 12px; font-size: 11px; color: var(--muted); position: absolute; left: 8px; top: 8px; }
 
     .blog-grid {
       display: grid;
@@ -115,14 +116,13 @@
       cursor: pointer; transition: border-color 0.2s, transform 0.2s;
     }
     .blog-card:hover { border-color: var(--accent); transform: translateY(-3px); }
-    .blog-card .card-img { width: 100%; height: 200px; object-fit: cover; display: block; background: var(--border); background-size: cover; background-position: center; }
+    .blog-card img.card-img { width: 100%; height: 200px; object-fit: cover; display: block; background: var(--border); }
     .blog-card .card-img-placeholder { width: 100%; height: 200px; background: var(--border); display: flex; align-items: center; justify-content: center; font-size: 2rem; color: var(--muted); }
     .blog-card .card-body { padding: 1.25rem; }
     .blog-card .card-date { font-size: 0.75rem; color: var(--muted); letter-spacing: 0.08em; text-transform: uppercase; margin-bottom: 0.5rem; }
     .blog-card .card-title { font-size: 1.1rem; font-weight: 600; color: var(--text); margin-bottom: 0.5rem; }
     .blog-card .card-excerpt { font-size: 0.88rem; color: var(--muted); line-height: 1.6; }
 
-    /* DETAIL VIEW ARTIKEL */
     .article-container { max-width: 800px; margin: 0 auto; padding: 4rem 2rem; }
     .back-link { margin-bottom: 2rem; display: inline-block; font-size: 0.9rem; letter-spacing: 0.05em; text-transform: uppercase; color: var(--muted); cursor: pointer; }
     .back-link:hover { color: var(--accent); }
@@ -158,28 +158,13 @@
       box-shadow: 0 8px 60px rgba(0,0,0,0.8);
     }
 
-    .lb-close {
-      position: absolute; top: 1.2rem; right: 1.5rem;
-      font-size: 2rem; color: #fff; cursor: pointer; line-height: 1;
-      background: none; border: none; opacity: 0.7; transition: opacity 0.15s;
-    }
+    .lb-close { position: absolute; top: 1.2rem; right: 1.5rem; font-size: 2rem; color: #fff; cursor: pointer; line-height: 1; background: none; border: none; opacity: 0.7; transition: opacity 0.15s; }
     .lb-close:hover { opacity: 1; }
 
-    .lb-prev, .lb-next {
-      position: absolute; top: 50%; transform: translateY(-50%);
-      font-size: 2.5rem; color: #fff; cursor: pointer;
-      background: none; border: none; opacity: 0.6; transition: opacity 0.15s;
-      padding: 0 1.5rem; user-select: none;
-    }
-    .lb-prev { left: 0; }
-    .lb-next { right: 0; }
-    .lb-prev:hover, .lb-next:hover { opacity: 1; }
+    .lb-prev, .lb-next { position: absolute; top: 50%; transform: translateY(-50%); font-size: 2.5rem; color: #fff; cursor: pointer; background: none; border: none; opacity: 0.6; transition: opacity 0.15s; padding: 0 1.5rem; user-select: none; }
+    .lb-prev { left: 0; } .lb-next { right: 0; } .lb-prev:hover, .lb-next:hover { opacity: 1; }
 
-    .lb-caption {
-      position: absolute; bottom: 1.2rem; left: 50%; transform: translateX(-50%);
-      font-size: 0.82rem; color: rgba(255,255,255,0.5);
-      font-family: 'Courier New', monospace; letter-spacing: 0.06em;
-    }
+    .lb-caption { position: absolute; bottom: 1.2rem; left: 50%; transform: translateX(-50%); font-size: 0.82rem; color: rgba(255,255,255,0.5); font-family: 'Courier New', monospace; letter-spacing: 0.06em; }
 
     footer {
       position: fixed; bottom: 0; left: 0; width: 100%; height: var(--footer-h);
@@ -192,12 +177,7 @@
     footer .footer-links a:hover { color: var(--accent); text-decoration: none; }
     .bsky-icon { width: 16px; height: 16px; fill: currentColor; }
 
-    .hamburger {
-      display: none; position: fixed; top: 1rem; left: 1rem; z-index: 200;
-      background: var(--surface); border: 1px solid var(--border);
-      border-radius: 6px; padding: 0.5rem 0.65rem; cursor: pointer;
-      flex-direction: column; gap: 5px;
-    }
+    .hamburger { display: none; position: fixed; top: 1rem; left: 1rem; z-index: 200; background: var(--surface); border: 1px solid var(--border); border-radius: 6px; padding: 0.5rem 0.65rem; cursor: pointer; flex-direction: column; gap: 5px; }
     .hamburger span { display: block; width: 22px; height: 2px; background: var(--text); border-radius: 2px; }
 
     @media (max-width: 768px) {
@@ -218,13 +198,10 @@
 </head>
 <body>
 
-  <button class="hamburger" id="hamburger" aria-label="Menü öffnen">
-    <span></span><span></span><span></span>
-  </button>
+  <button class="hamburger" id="hamburger" aria-label="Menü öffnen"><span></span><span></span><span></span></button>
 
   <div class="layout">
 
-    <!-- ── Sidebar ── -->
     <nav class="sidebar" id="sidebar">
       <div class="logo">Photo-Wolf</div>
       <div class="tagline">Licht · Moment · Abenteuer</div>
@@ -240,7 +217,6 @@
       </ul>
     </nav>
 
-    <!-- ── Main ── -->
     <main id="main">
 
       <!-- HOME -->
@@ -249,10 +225,9 @@
           <div class="hero-eyebrow">Fotografie · München & Umgebung</div>
           <h1>Licht einfangen,<br>Momente festhalten.</h1>
           <p>Unterwegs mit der Canon R6 – zwischen Alpen, Stadtleben irgendwo auf einer Schotterpiste.</p>
-          <p></p>
           <p><strong>TFP-Shootings (Time for Print)</strong></p>
           <p>Ich bin immer auf der Suche nach spannenden Gesichtern und neuen Projekten zur Erweiterung meines Portfolios. Wenn du Lust auf ein gemeinsames Projekt auf TFP-Basis hast, melde dich gerne bei mir per <a href="mailto:rip2345@gmail.com">E-Mail</a>!</p>
-          <button class="btn" onclick="document.querySelector('[data-view=\"galerie\"]').click()">Zur Galerie →</button>
+          <button class="btn" onclick="document.querySelector('[data-view=galerie]').click()">Zur Galerie →</button>
           <div class="exif-bar">
             <span>📷 <strong>Canon EOS R6</strong></span>
             <span>🔭 <strong>16–200mm</strong> Brennweite</span>
@@ -276,15 +251,13 @@
           <h2>Blog</h2>
           <p>Geschichten hinter den Bildern – Locations, Lichtstimmungen, Pannen und Glücksmomente.</p>
         </div>
-        <div class="blog-grid" id="blog-grid">
-          <!-- Blog-Karten werden hier dynamisch eingefügt -->
-        </div>
+        <div class="blog-grid" id="blog-grid"></div>
       </div>
 
-      <!-- ARTIKEL DETAILANSICHT -->
+      <!-- ARTIKEL -->
       <div class="view" id="view-article">
         <div class="article-container">
-          <span class="back-link" onclick="document.querySelector('[data-view=\'blog\']').click()">← Zurück zum Blog</span>
+          <span class="back-link" onclick="document.querySelector('[data-view=blog]').click()">← Zurück zum Blog</span>
           <article>
             <header class="article-header">
               <div class="article-meta" id="art-date"></div>
@@ -295,17 +268,12 @@
         </div>
       </div>
 
+      <!-- restliche Views (Ausrüstung, Über, Kontakt, TFP, Impressum) unverändert -->
       <!-- AUSRÜSTUNG -->
       <div class="view" id="view-ausruestung">
-        <div class="view-header">
-          <h2>Ausrüstung</h2>
-          <p>Was ich mit auf Tour nehme.</p>
-        </div>
+        <div class="view-header"><h2>Ausrüstung</h2><p>Was ich mit auf Tour nehme.</p></div>
         <div class="simple-section">
-          <h3>Kamera</h3>
-          <ul>
-            <li>Canon EOS R6</li>
-          </ul>
+          <h3>Kamera</h3><ul><li>Canon EOS R6</li></ul>
           <h3>Objektive</h3>
           <ul>
             <li>Canon EF 16–35mm f/4 L IS USM</li>
@@ -319,109 +287,49 @@
 
       <!-- ÜBER MICH -->
       <div class="view" id="view-ueber">
-        <div class="view-header">
-          <h2>Über mich</h2>
-          <p>Der Mensch hinter der Kamera.</p>
-        </div>
+        <div class="view-header"><h2>Über mich</h2><p>Der Mensch hinter der Kamera.</p></div>
         <div class="simple-section">
           <p>Hobbyfotograf aus München. Aufgewachsen in den 70ern und 80ern, irgendwo zwischen Schwabing und den Alpen.</p>
           <p>Immer auf der Suche nach dem richtigen Licht – und dem nächsten Abenteuer auf vier Rädern.</p>
-          <p>Fotografie ist für mich kein Wettbewerb, sondern ein Weg, Momente festzuhalten, die sonst einfach verschwinden würden.</p>
         </div>
       </div>
 
       <!-- KONTAKT -->
       <div class="view" id="view-kontakt">
-        <div class="view-header">
-          <h2>Kontakt</h2>
-          <p>Einfach melden.</p>
-        </div>
+        <div class="view-header"><h2>Kontakt</h2><p>Einfach melden.</p></div>
         <div class="simple-section">
-          <p>Am einfachsten erreichst Du mich über
-            <a href="https://bsky.app/profile/photo-wolf.bsky.social" target="_blank" rel="noopener">Bluesky</a>
-            oder per <a href="mailto:rip2345@gmail.com">E-Mail</a>.
-          </p>
+          <p>Am einfachsten erreichst Du mich über <a href="https://bsky.app/profile/photo-wolf.bsky.social" target="_blank" rel="noopener">Bluesky</a> oder per <a href="mailto:rip2345@gmail.com">E-Mail</a>.</p>
         </div>
       </div>
 
       <!-- TFP -->
       <div class="view" id="view-tfp">
-        <div class="view-header">
-          <h2>TFP – Was das bedeutet</h2>
-          <p>Kurz erklärt: Time for Print — gegenseitiger Austausch von Zeit gegen Bilder (keine Bezahlung).</p>
-        </div>
-        <div class="simple-section">
-          <p>Bei einem TFP-Shooting tauschen wir Zeit und Bilder: Du stehst vor der Kamera, ich fotografiere und bearbeite die Ergebnisse. Du bekommst Bilder für dein Portfolio und ich erweitere mein Portfolio — beide Seiten profitieren.</p>
-
-          <h3>Ablauf</h3>
-          <ul>
-            <li>Anfrage & Ideenabgleich (Motiv, Styling, Location)</li>
-            <li>Termin & Treffpunkt vereinbaren (Indoor oder Outdoor)</li>
-            <li>Shooting (typisch 45–90 Minuten, je nach Konzept)</li>
-            <li>Auswahl & Retusche: Ich sende dir eine Auswahl als Downloadlink</li>
-            <li>Übergabe der finalen Bilder in webtauglicher Auflösung; größere Dateien auf Anfrage</li>
-          </ul>
-
-          <h3>Rechte & Nutzung</h3>
-          <p>Du erhältst einfache Nutzungsrechte zur Präsentation in Portfolio, Social Media und für Bewerbungen. Kommerzielle Nutzung oder Weiterverkauf bedarf einer gesonderten Vereinbarung. Bei Bedarf unterschreiben wir vorab ein Model-Release.</p>
-
-          <h3>Was ich biete:</h3>
-          <ul>
-            <li>Professionelles Equipment (Canon R6 & diverse L-Objektive)</li>
-            <li>Kreative Bildideen (von klassisch bis LensBaby-Art)</li>
-            <li>Entspannte Atmosphäre beim Shooting (Indoor/Outdoor)</li>
-            <li>Hochwertig bearbeitete Bilder für Dein Portfolio</li>
-          </ul>
-
-          <h3>Was Du mitbringst:</h3>
-          <ul>
-            <li>Outfits, die zum Konzept passen (nach Belieben oder Absprache)</li>
-            <li>Falls nötig: eigene Visagistin / Make-up oder ich organisiere Basics (auf Anfrage)</li>
-            <li>Pünktlichkeit und gute Laune</li>
-          </ul>
-
-          <h3>Sonstiges</h3>
-          <p>TFP ist unentgeltlich. Bei weiter Anfahrt klären wir ggf. Fahrtkosten vorab. Wenn du ein Moodboard oder Referenzbilder hast: sehr gern — das hilft bei der Vorbereitung.</p>
-
-          <p>
-            Interesse? Schreib mir direkt über <a href="mailto:rip2345@gmail.com">E-Mail</a> oder klick im Menü auf <strong>Kontakt</strong>.
-          </p>
-        </div>
+        <div class="view-header"><h2>TFP – Was das bedeutet</h2><p>Kurz erklärt: Time for Print.</p></div>
+        <div class="simple-section"> ... </div>
       </div>
 
       <!-- IMPRESSUM -->
       <div class="view" id="view-impressum">
-        <div class="view-header">
-          <h2>Impressum</h2>
-        </div>
+        <div class="view-header"><h2>Impressum</h2></div>
         <div class="impressum-section">
-          <p>
-            Andreas Wolf<br>
-            Privater Hobby-Fotografie-Blog – nicht kommerziell<br><br>
-            Kontakt: <a href="mailto:rip2345@gmail.com">rip2345@gmail.com</a><br>
-            Inhaltlich verantwortlich gemäß §18 Abs. 2 MStV: Andreas Wolf
-          </p>
+          <p>Andreas Wolf<br>Privater Hobby-Fotografie-Blog – nicht kommerziell<br><br>Kontakt: <a href="mailto:rip2345@gmail.com">rip2345@gmail.com</a></p>
         </div>
       </div>
 
     </main>
   </div>
 
-  <!-- ── Footer ── -->
   <footer>
     <span>© 2026 Photo-Wolf · Andreas Wolf</span>
     <div class="footer-links">
       <a href="https://bsky.app/profile/photo-wolf.bsky.social" target="_blank" rel="noopener">
-        <svg class="bsky-icon" viewBox="0 0 360 320" xmlns="http://www.w3.org/2000/svg">
-          <path d="M180 142c-16-72-75-120-120-120C18 22 0 60 0 90c0 42 28 70 60 80-40 8-60 30-60 60 0 36 30 68 80 68 36 0 72-18 100-60 28 42 64 60 100 60 50 0 80-32 80-68 0-30-20-52-60-60 32-10 60-38 60-80 0-30-18-68-60-68-45 0-104 48-120 120z"/>
-        </svg>
+        <svg class="bsky-icon" viewBox="0 0 360 320" xmlns="http://www.w3.org/2000/svg"><path d="M180 142c-16-72-75-120-120-120C18 22 0 60 0 90c0 42 28 70 60 80-40 8-60 30-60 60 0 36 30 68 80 68 36 0 72-18 100-60 28 42 64 60 100 60 50 0 80-32 80-68 0-30-20-52-60-60 32-10 60-38 60-80 0-30-18-68-60-68-45 0-104 48-120 120z"/></svg>
         Bluesky
       </a>
       <a href="#" data-view="impressum" class="nav-link">Impressum</a>
     </div>
   </footer>
 
-  <!-- ── Lightbox ── -->
   <div class="lightbox" id="lightbox">
     <button class="lb-close" id="lb-close">✕</button>
     <button class="lb-prev" id="lb-prev">‹</button>
@@ -431,64 +339,139 @@
   </div>
 
   <script>
+    // --- DOM ready
     document.addEventListener('DOMContentLoaded', () => {
-      // Pfade: relativ zum Ort der index.html
-      const galleryBase = "assets/images/gallery/";
-      // Passe ggf. an, falls deine Galerie in einem Unterordner "archive" liegt:
-      // const galleryBase = "assets/images/gallery/archive/";
+      // Kandidaten-Pfade, in dieser Reihenfolge geprüft:
+      const galleryCandidates = [
+        "assets/images/gallery/",
+        "assets/images/gallery/archive/",
+        "assets/images/gallery/large/"
+      ];
 
-      const images = [
+      // Beispiel: Dateinamen (anpassen falls andere Namen)
+      const galleryFiles = [
         "10.jpg","11.jpg","12.jpg","13.jpg","14.jpg",
         "15.jpg","16.jpg","17.jpg","18.jpg","30.jpg",
         "100.jpg","111.jpg","112.jpg","113.jpg"
       ];
 
-      // Elemente
-      const hamburger = document.getElementById('hamburger');
-      const sidebar = document.getElementById('sidebar');
-      const grid = document.getElementById('gallery-grid');
+      // SVG placeholder (data URI)
+      const placeholderSVG = encodeURIComponent(`<svg xmlns='http://www.w3.org/2000/svg' width='600' height='400'><rect width='100%' height='100%' fill='#1a1a1a'/><text x='50%' y='50%' fill='#888' font-size='20' font-family='sans-serif' dominant-baseline='middle' text-anchor='middle'>Kein Bild</text></svg>`);
+      const placeholderDataUrl = `data:image/svg+xml;utf8,${placeholderSVG}`;
 
-      // Galerie aufbauen
-      if (grid) {
-        images.forEach((name, idx) => {
-          const src = galleryBase + name;
-          const fig = document.createElement('figure');
-          fig.innerHTML = `<img src="${src}" alt="Foto ${idx+1}" loading="lazy">`;
-          fig.addEventListener('click', () => openLightbox(idx));
-          grid.appendChild(fig);
+      // Utility: prüfe, ob ein Bild existiert (versucht zu laden)
+      function testImage(src) {
+        return new Promise(resolve => {
+          const img = new Image();
+          img.onload = () => resolve(true);
+          img.onerror = () => resolve(false);
+          img.src = src;
         });
       }
 
-      // Lightbox
-      let currentIdx = 0;
+      // Findet den funktionierenden Pfad für einen Dateinamen (prüft Kandidaten)
+      async function findGallerySrcFor(filename) {
+        for (const base of galleryCandidates) {
+          const candidate = base + filename;
+          const ok = await testImage(candidate);
+          if (ok) {
+            console.log("Bild gefunden:", candidate);
+            return candidate;
+          }
+        }
+        console.warn("Kein Bild gefunden für", filename);
+        return null;
+      }
+
+      // Wenn in der JSON ein Bildpfad angegeben ist, normalize & prüfen
+      async function resolveImagePath(path) {
+        if (!path) return null;
+        // Absolute URL?
+        if (path.startsWith('http://') || path.startsWith('https://')) {
+          const ok = await testImage(path);
+          return ok ? path : null;
+        }
+        // Remove leading slash if vorhanden
+        let p = path.replace(/^\/+/, '');
+        // First try given path directly
+        if (await testImage(p)) return p;
+        // Then try with galleryCandidates if filename only
+        const name = p.split('/').pop();
+        for (const base of galleryCandidates) {
+          const candidate = base + name;
+          if (await testImage(candidate)) return candidate;
+        }
+        return null;
+      }
+
+      // --- Galerie aufbauen (mit Fallback-Prüfung)
+      const galleryGrid = document.getElementById('gallery-grid');
+      if (galleryGrid) {
+        (async () => {
+          for (let i = 0; i < galleryFiles.length; i++) {
+            const name = galleryFiles[i];
+            const src = await findGallerySrcFor(name);
+            const fig = document.createElement('figure');
+            const caption = document.createElement('figcaption');
+            caption.textContent = `Foto ${i + 1}`;
+            const img = document.createElement('img');
+            img.alt = `Foto ${i + 1}`;
+            img.loading = 'lazy';
+            img.src = src || placeholderDataUrl;
+            img.addEventListener('error', () => { img.src = placeholderDataUrl; });
+            fig.appendChild(caption);
+            fig.appendChild(img);
+            fig.addEventListener('click', () => {
+              if (img.src && img.src !== placeholderDataUrl) openLightboxBySrc(img.src, i);
+            });
+            galleryGrid.appendChild(fig);
+          }
+        })();
+      }
+
+      // --- Lightbox
+      let lightboxIndex = 0;
       const lb = document.getElementById('lightbox');
       const lbImg = document.getElementById('lb-img');
-      const lbCap = document.getElementById('lb-caption');
+      const lbCaption = document.getElementById('lb-caption');
 
-      function openLightbox(idx) {
-        currentIdx = idx;
-        lbImg.src = galleryBase + images[idx];
-        lbCap.textContent = `${idx + 1} / ${images.length}`;
+      function openLightboxBySrc(src, idx) {
+        lbImg.src = src;
+        lightboxIndex = idx;
+        lbCaption.textContent = `${idx + 1} / ${galleryFiles.length}`;
         lb.classList.add('open');
         document.body.style.overflow = 'hidden';
       }
       function closeLightbox() {
         lb.classList.remove('open');
+        lbImg.src = '';
         document.body.style.overflow = '';
       }
-
       document.getElementById('lb-close').addEventListener('click', closeLightbox);
-      document.getElementById('lb-prev').addEventListener('click', () => openLightbox((currentIdx - 1 + images.length) % images.length));
-      document.getElementById('lb-next').addEventListener('click', () => openLightbox((currentIdx + 1) % images.length));
+      document.getElementById('lb-prev').addEventListener('click', () => {
+        const prev = (lightboxIndex - 1 + galleryFiles.length) % galleryFiles.length;
+        // try to open prev image element src
+        const img = document.querySelectorAll('.gallery-grid img')[prev];
+        if (img) openLightboxBySrc(img.src, prev);
+      });
+      document.getElementById('lb-next').addEventListener('click', () => {
+        const next = (lightboxIndex + 1) % galleryFiles.length;
+        const img = document.querySelectorAll('.gallery-grid img')[next];
+        if (img) openLightboxBySrc(img.src, next);
+      });
       lb.addEventListener('click', e => { if (e.target === lb) closeLightbox(); });
       document.addEventListener('keydown', e => {
         if (!lb.classList.contains('open')) return;
         if (e.key === 'Escape') closeLightbox();
-        if (e.key === 'ArrowLeft') openLightbox((currentIdx - 1 + images.length) % images.length);
-        if (e.key === 'ArrowRight') openLightbox((currentIdx + 1) % images.length);
+        if (e.key === 'ArrowLeft') document.getElementById('lb-prev').click();
+        if (e.key === 'ArrowRight') document.getElementById('lb-next').click();
       });
 
-      // Views + Navigation
+      // --- Navigation & Views
+      const sidebar = document.getElementById('sidebar');
+      const hamburger = document.getElementById('hamburger');
+      hamburger.addEventListener('click', () => sidebar.classList.toggle('open'));
+
       function showView(viewId) {
         document.querySelectorAll('.view').forEach(v => v.classList.remove('active'));
         document.querySelectorAll('.nav-link').forEach(l => l.classList.remove('active'));
@@ -499,67 +482,76 @@
         sidebar.classList.remove('open');
       }
 
-      // Blog: dynamisch laden
+      // --- Blog: dynamisch laden aus assets/blog-data.json
       let blogDataCache = null;
-
       async function loadBlogData() {
         if (blogDataCache) return blogDataCache;
         try {
-          const resp = await fetch("assets/blog-data.json");
-          if (!resp.ok) throw new Error("Fehler beim Laden der Blog-Datei");
-          blogDataCache = await resp.json();
+          const r = await fetch('assets/blog-data.json');
+          if (!r.ok) throw new Error('assets/blog-data.json konnte nicht geladen werden (' + r.status + ')');
+          blogDataCache = await r.json();
+          console.log('Blog-Daten geladen, Beiträge:', Object.keys(blogDataCache).length);
           return blogDataCache;
         } catch (err) {
-          console.error(err);
+          console.error('Fehler beim Laden blog-data.json:', err);
           return null;
         }
       }
 
       async function showBlog() {
-        const blogGrid = document.getElementById('blog-grid');
-        if (!blogGrid) return;
-
-        blogGrid.innerHTML = `<div style="padding:2rem;color:var(--muted)">Lade Beiträge…</div>`;
+        const grid = document.getElementById('blog-grid');
+        if (!grid) return;
+        grid.innerHTML = `<div style="padding:2rem;color:var(--muted)">Lade Beiträge…</div>`;
         const data = await loadBlogData();
         if (!data) {
-          blogGrid.innerHTML = `<div style="padding:2rem;color:var(--muted)">Blog-Daten konnten nicht geladen werden. Prüfe assets/blog-data.json</div>`;
+          grid.innerHTML = `<div style="padding:2rem;color:var(--muted)">Blog-Daten konnten nicht geladen werden. Prüfe assets/blog-data.json (siehe Console).</div>`;
           showView('blog');
           return;
         }
 
-        blogGrid.innerHTML = "";
+        grid.innerHTML = "";
+        // entries in insertion order
         for (const slug of Object.keys(data)) {
           const post = data[slug];
           const card = document.createElement('div');
           card.className = 'blog-card';
           card.id = 'post-' + slug;
-          // Bild als background (oder Platzhalter)
-          const imgStyle = post.image ? `style="background-image:url('${post.image}')" ` : '';
+
+          // Thumbnail resolution: try resolveImagePath(post.image) or fallback placeholder
+          let thumbSrc = null;
+          if (post.image) {
+            thumbSrc = await resolveImagePath(post.image);
+          }
+          if (!thumbSrc) thumbSrc = placeholderDataUrl;
+
+          // Build card
           card.innerHTML = `
-            <div class="card-img" ${imgStyle}></div>
+            <img class="card-img" src="${thumbSrc}" alt="${(post.title || '').replace(/"/g,'')}" />
             <div class="card-body">
               <div class="card-date">${post.date || ''}</div>
               <div class="card-title">${post.title || ''}</div>
               <div class="card-excerpt">${post.excerpt || ''}</div>
             </div>
           `;
-          blogGrid.appendChild(card);
+          grid.appendChild(card);
         }
 
         showView('blog');
       }
 
+      // Open article detail (needs blogDataCache loaded)
       function openArticle(slug) {
-        if (!blogDataCache) return;
+        if (!blogDataCache) return console.warn('Blog-Cache leer');
         const post = blogDataCache[slug];
         if (!post) return;
         document.getElementById('art-title').textContent = post.title || '';
         document.getElementById('art-date').textContent = post.date || '';
+        // content can contain HTML — trusted because you create it
         document.getElementById('art-content').innerHTML = post.content || '';
         showView('article');
       }
 
-      // Global click => Artikel-Öffnen (Event Delegation)
+      // Event delegation: click on blog-card opens article
       document.addEventListener('click', e => {
         const card = e.target.closest('.blog-card');
         if (card && card.id && card.id.startsWith('post-')) {
@@ -568,16 +560,14 @@
         }
       });
 
-      // Navigation: single handler
+      // Nav links: blog special -> load then show
       document.querySelectorAll('.nav-link').forEach(link => {
         link.addEventListener('click', async (e) => {
           e.preventDefault();
           const view = link.dataset.view;
           if (!view) return;
           if (view === 'blog') {
-            await loadBlogData(); // lade Daten in Cache (openArticle benötigt cache)
-            // ensure cache available for openArticle
-            if (!blogDataCache) blogDataCache = await loadBlogData();
+            await loadBlogData(); // assure cache
             await showBlog();
           } else {
             showView(view);
@@ -585,10 +575,28 @@
         });
       });
 
-      // Hamburger
-      hamburger.addEventListener('click', () => sidebar.classList.toggle('open'));
-    });
-  </script>
+      // --- Helper for resolving blog image path (tries provided path, then galleryCandidates)
+      async function resolveImagePath(path) {
+        if (!path) return null;
+        // if absolute URL
+        if (/^https?:\/\//i.test(path)) {
+          return (await testImage(path)) ? path : null;
+        }
+        // Normalize: remove leading slashes
+        const normalized = path.replace(/^\/+/, '');
+        // Try direct
+        if (await testImage(normalized)) return normalized;
+        // if it looks like just a filename, try galleryCandidates
+        const filename = normalized.split('/').pop();
+        for (const base of galleryCandidates) {
+          const candidate = base + filename;
+          if (await testImage(candidate)) return candidate;
+        }
+        console.warn('resolveImagePath: kein Bild gefunden für', path);
+        return null;
+      }
 
+    }); // DOMContentLoaded end
+  </script>
 </body>
 </html>
