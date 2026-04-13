@@ -12,5 +12,12 @@
     "excerpt": "Ein kurzer Bericht über Spielen mit dem LensBaby Composer — weiche Kanten, harte Kontraste.",
     "content": "<p>Das LensBaby liefert spezielle Look-and-Feel-Bilder — nicht für jede Situation, aber genial für kreative Projekte.</p><p><img src=\"assets/images/gallery/archive/111.jpg\" alt=\"LensBaby Testaufnahme\"></p><p>Tipps: Blende 2.8, feste Brennweite, manuelles Fokussieren.</p>",
     "image": "assets/images/gallery/archive/111.jpg"
+  },
+  "test": {
+    "title": "Test",
+    "date": "2026-04-13",
+    "excerpt": "Test für Vorschau Text",
+    "image": "assets/images/blog/1776043437700_WOLF3825.jpg",
+    "content": "<p>Test für Text</p><p><br></p><p><img src=\"assets/images/blog/1776043453218_WOLF3686.jpg\"></p><p><br></p><p>Blablubb</p><p><img src=\"assets/images/blog/1776043475662_WOLF3821.jpg\"><img src=\"assets/images/blog/1776043483082_WOLF3825.jpg\"></p>"
   }
 }
