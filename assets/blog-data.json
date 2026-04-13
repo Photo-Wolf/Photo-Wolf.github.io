@@ -1,3 +1,9 @@
 {
-  
+  "neuer-hoster-(github),-neue-software": {
+    "title": "Neuer Hoster (GitHub), neue Software",
+    "date": "2026-04-13",
+    "excerpt": "Was man nicht so alles macht, wenn der Schlaf auf sich warten lässt...",
+    "image": "assets/images/blog/1776045921652_sw.png",
+    "content": "<p>Nachdem ich mich vor eineigen Monaten von Adobe verabschiedet habe, musste langsam wieder ein kleines Portfolio her. </p><p><br></p><p>Da ich keine große Lust auf das 10.000 gleich aussehende Wordpress-Template hatte, wurde auf die \"schnelle\" eine Grundgerüst aufgebaut. Daraus hat sich in den letzten Tagen etwas entwickelt. Vorerst bin ich zufrieden - bestimmt wird es noch ein paar Änderungen geben, dafür ist später noch Zeit.</p><p><br></p><p>Nachdem die Webseite auch von extern befüllt werden sollte, musste ich noch ein paar kleine Programme schreiben, die die Daten perfekt aufbereiten und zu GitHub hochladen. An dem Punkt bin ich jetzt angekommen und glücklich, dass offenbar alles funktioniert. </p><p><br></p><p>Solltest Du doch etwas entdecken was nicht so gut läuft, sag mir bitte per eMail bescheid.</p>"
+  }
 }
