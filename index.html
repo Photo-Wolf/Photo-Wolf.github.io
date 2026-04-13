@@ -38,6 +38,7 @@
       height: calc(100vh - var(--footer-h));
       overflow-y: auto;
       flex-shrink: 0;
+      z-index: 200;
     }
 
     nav.sidebar .logo { font-size: 1.4rem; font-weight: 700; letter-spacing: 0.05em; color: var(--accent); margin-bottom: 0.25rem; }
@@ -101,7 +102,6 @@
     }
     .gallery-grid figure:hover { transform: scale(1.02); border-color: var(--accent); }
     .gallery-grid figure img { width: 100%; height: 220px; object-fit: cover; display: block; background: var(--border); }
-    /* Overlay/Captions ausblenden (falls vorhanden) */
     .gallery-grid figure figcaption { display: none !important; }
 
     .blog-grid {
@@ -183,7 +183,7 @@
 
     @media (max-width: 768px) {
       .hamburger { display: flex; }
-      nav.sidebar { position: fixed; top: 0; left: 0; height: 100vh; z-index: 100; transform: translateX(-100%); transition: transform 0.25s ease; }
+      nav.sidebar { position: fixed; top: 0; left: 0; height: 100vh; z-index: 300; transform: translateX(-100%); transition: transform 0.25s ease; }
       nav.sidebar.open { transform: translateX(0); }
       .layout { flex-direction: column; }
       main { width: 100%; }
@@ -210,11 +210,12 @@
         <li><a href="#" data-view="home"        class="nav-link active"><span class="nav-icon">◈</span>Start</a></li>
         <li><a href="#" data-view="galerie"     class="nav-link"><span class="nav-icon">◧</span>Galerie</a></li>
         <li><a href="#" data-view="blog"        class="nav-link"><span class="nav-icon">✦</span>Blog</a></li>
-        <li><a href="#" data-view="tfp" class="nav-link"><span class="nav-icon">✱</span>TFP</a></li>
+        <li><a href="#" data-view="tfp"         class="nav-link"><span class="nav-icon">✱</span>TFP</a></li>
         <li><a href="#" data-view="ueber"       class="nav-link"><span class="nav-icon">◉</span>Über mich</a></li>
         <li><a href="#" data-view="ausruestung" class="nav-link"><span class="nav-icon">⌖</span>Ausrüstung</a></li>
         <li><a href="#" data-view="kontakt"     class="nav-link"><span class="nav-icon">◎</span>Kontakt</a></li>
         <li><a href="#" data-view="impressum"   class="nav-link"><span class="nav-icon">·</span>Impressum</a></li>
+        <li><a href="#" data-view="datenschutz" class="nav-link"><span class="nav-icon">¶</span>Datenschutz</a></li>
       </ul>
     </nav>
 
@@ -302,42 +303,64 @@
         </div>
       </div>
 
-      <!-- TFP (lockerer formuliert) -->
+      <!-- TFP -->
       <div class="view" id="view-tfp">
         <div class="view-header">
-         <h2>TFP – Zeit für gemeinsame Bilder</h2>
+          <h2>TFP – Zeit für gemeinsame Bilder</h2>
           <p>Ganz einfach: Time for Photos.</p>
+        </div>
+        <div class="simple-section">
+          <h3>Was ist TFP?</h3>
+          <p>Bei TFP (Time for Photos) arbeiten Model und Fotograf ohne Bezahlung zusammen – jeder bringt etwas mit: Das Model seine Ausstrahlung und Zeit, der Fotograf seine Kamera und Erfahrung. Heraus kommt meistens etwas Schönes: Neue Bilder für beide Portfolios.</p>
+          <h3>Wofür lohnt sich TFP?</h3>
+          <p>Perfekt zum Ausprobieren neuer Ideen, Looks oder Locations. Ideal auch für Einsteiger, die erstmal Material sammeln wollen – sei es fürs Model-Portfolio oder einfach um gemeinsam kreativ zu sein. Am Ende haben beide Seiten was davon: der Fotograf frische Shots, das Model neue Eindrücke.</p>
+          <h3>Wer darf was mit den Bildern machen?</h3>
+          <p>In der Regel gilt: Beide dürfen die Fotos privat und im eigenen Portfolio nutzen – inklusive Social Media, solange der andere genannt wird. Für kommerzielle Zwecke braucht’s aber eine extra Absprache. Fair play!</p>
+          <div class="check">
+            <strong>Kleiner Check vor dem Shooting:</strong>
+            <ul>
+              <li>Wann und wo geht’s los? Und welcher Look passt zum Thema?</li>
+              <li>Wer bekommt welche Bilder?</li>
+              <li>Ist ein Model-Release notwendig oder reicht eine kurze schriftliche Bestätigung?</li>
+              <li>Für was dürfen die Bilder später verwendet werden?</li>
+              <li>Wie sieht’s mit Bezahlung aus, falls plötzlich doch was Kommerzielles daraus wird?</li>
+            </ul>
+          </div>
+        </div>
       </div>
-  <div class="simple-section">
-    
-    <h3>Was ist TFP?</h3>
-    <p>Bei TFP (Time for Photos) arbeiten Model und Fotograf ohne Bezahlung zusammen – jeder bringt etwas mit: Das Model seine Ausstrahlung und Zeit, der Fotograf seine Kamera und Erfahrung. Heraus kommt meistens etwas Schönes: Neue Bilder für beide Portfolios.</p>
-
-    <h3>Wofür lohnt sich TFP?</h3>
-    <p>Perfekt zum Ausprobieren neuer Ideen, Looks oder Locations. Ideal auch für Einsteiger, die erstmal Material sammeln wollen – sei es fürs Model-Portfolio oder einfach um gemeinsam kreativ zu sein. Am Ende haben beide Seiten was davon: der Fotograf frische Shots, das Model neue Eindrücke.</p>
-
-    <h3>Wer darf was mit den Bildern machen?</h3>
-    <p>In der Regel gilt: Beide dürfen die Fotos privat und im eigenen Portfolio nutzen – inklusive Social Media, solange der andere genannt wird. Für kommerzielle Zwecke braucht’s aber eine extra Absprache. Fair play!</p>
-
-    <div class="check">
-      <strong>Kleiner Check vor dem Shooting:</strong>
-      <ul>
-        <li>Wann und wo geht’s los? Und welcher Look passt zum Thema?</li>
-        <li>Wer bekommt welche Bilder?</li>
-        <li>Ist ein Model-Release notwendig oder reicht eine kurze schriftliche Bestätigung?</li>
-        <li>Für was dürfen die Bilder später verwendet werden?</li>
-        <li>Wie sieht’s mit Bezahlung aus, falls plötzlich doch was Kommerzielles daraus wird?</li>
-      </ul>
-    </div>
-
-  </div>
-</div>
 
       <!-- IMPRESSUM -->
       <div class="view" id="view-impressum">
         <div class="view-header"><h2>Impressum</h2></div>
         <div class="impressum-section">
-          <p>Andreas Wolf<br>Privater Hobby-Fotografie-Blog – nicht kommerziell<br><br>Kontakt: <a href="mailto:rip2345@gmail.com">rip2345@gmail.com</a></p>
+          <p>Andreas Wolf<br>[Deine Straße und Hausnummer]<br>[Deine PLZ] München<br><br>Privater Hobby-Fotografie-Blog – nicht kommerziell<br><br>Kontakt: <a href="mailto:rip2345@gmail.com">rip2345@gmail.com</a></p>
+        </div>
+      </div>
+
+      <!-- DATENSCHUTZ -->
+      <div class="view" id="view-datenschutz">
+        <div class="view-header">
+          <h2>Datenschutzerklärung</h2>
+          <p>Informationen darüber, wie ich mit Deinen Daten umgehe.</p>
+        </div>
+        <div class="simple-section">
+          <p>Mir ist Deine Privatsphäre wichtig. Deshalb verzichte ich auf dieser Webseite komplett auf Tracking-Tools, Analyse-Skripte oder Werbe-Cookies.</p>
+          <h3>1. Verantwortlicher</h3>
+          <p>Verantwortlich für die Datenverarbeitung auf dieser Webseite bin ich:</p>
+          <p>
+            Andreas Wolf<br>
+            [Deine Straße und Hausnummer]<br>
+            [Deine PLZ] München<br>
+            E-Mail: <a href="mailto:rip2345@gmail.com">rip2345@gmail.com</a>
+          </p>
+          <h3>2. Hosting durch GitHub Pages</h3>
+          <p>Diese Webseite wird über GitHub Pages (GitHub Inc., 88 Colin P. Kelly Jr. St, San Francisco, CA 94107, USA) bereitgestellt. Wenn Du meine Webseite besuchst, erhebt GitHub automatisch Daten, um die Sicherheit und Stabilität des Dienstes zu gewährleisten. Dazu gehören unter anderem Deine IP-Adresse, Datum und Uhrzeit des Abrufs sowie der verwendete Webbrowser. Die Rechtsgrundlage für diese Verarbeitung ist mein berechtigtes Interesse (Art. 6 Abs. 1 lit. f DSGVO) an einem sicheren Betrieb meiner Webseite.</p>
+          <h3>3. Cookies und Tracking</h3>
+          <p>Ich verwende auf dieser Webseite keine Cookies, keine Analyse-Tools (wie Google Analytics) und keine Tracking-Pixel von Drittanbietern. Es werden keine Nutzerprofile erstellt.</p>
+          <h3>4. Kontaktaufnahme</h3>
+          <p>Wenn Du mir per E-Mail schreibst, speichere ich Deine Angaben (E-Mail-Adresse, Name und den Inhalt Deiner Nachricht), um Deine Anfrage bearbeiten zu können. Ich gebe diese Daten niemals ohne Deine Einwilligung an Dritte weiter.</p>
+          <h3>5. Deine Rechte</h3>
+          <p>Du hast das Recht, jederzeit Auskunft über die bei mir gespeicherten Daten zu erhalten. Zudem hast Du das Recht auf Berichtigung, Sperrung oder Löschung dieser Daten. Wende Dich dazu einfach per E-Mail an mich.</p>
         </div>
       </div>
 
@@ -352,6 +375,7 @@
         Bluesky
       </a>
       <a href="#" data-view="impressum" class="nav-link">Impressum</a>
+      <a href="#" data-view="datenschutz" class="nav-link">Datenschutz</a>
     </div>
   </footer>
 
@@ -364,27 +388,22 @@
   </div>
 
   <script>
-    // --- DOM ready
     document.addEventListener('DOMContentLoaded', () => {
-      // Kandidaten-Pfade, in dieser Reihenfolge geprüft:
       const galleryCandidates = [
         "assets/images/gallery/",
         "assets/images/gallery/archive/",
         "assets/images/gallery/large/"
       ];
 
-      // Beispiel: Dateinamen (anpassen falls andere Namen)
       const galleryFiles = [
         "10.jpg","11.jpg","12.jpg","13.jpg","14.jpg",
         "15.jpg","16.jpg","17.jpg","18.jpg","30.jpg",
         "100.jpg","111.jpg","112.jpg","113.jpg"
       ];
 
-      // SVG placeholder (data URI)
       const placeholderSVG = encodeURIComponent(`<svg xmlns='http://www.w3.org/2000/svg' width='600' height='400'><rect width='100%' height='100%' fill='#1a1a1a'/><text x='50%' y='50%' fill='#888' font-size='20' font-family='sans-serif' dominant-baseline='middle' text-anchor='middle'>Kein Bild</text></svg>`);
       const placeholderDataUrl = `data:image/svg+xml;utf8,${placeholderSVG}`;
 
-      // Utility: prüfe, ob ein Bild existiert (versucht zu laden)
       function testImage(src) {
         return new Promise(resolve => {
           const img = new Image();
@@ -394,43 +413,31 @@
         });
       }
 
-      // Findet den funktionierenden Pfad für einen Dateinamen (prüft Kandidaten)
       async function findGallerySrcFor(filename) {
         for (const base of galleryCandidates) {
           const candidate = base + filename;
           const ok = await testImage(candidate);
-          if (ok) {
-            console.log("Bild gefunden:", candidate);
-            return candidate;
-          }
+          if (ok) return candidate;
         }
-        console.warn("Kein Bild gefunden für", filename);
         return null;
       }
 
-      // Wenn in der JSON ein Bildpfad angegeben ist, normalize & prüfen
       async function resolveImagePath(path) {
         if (!path) return null;
-        // Absolute URL?
         if (/^https?:\/\//i.test(path)) {
           const ok = await testImage(path);
           return ok ? path : null;
         }
-        // Remove leading slash if vorhanden
         const p = path.replace(/^\/+/, '');
-        // First try given path directly
         if (await testImage(p)) return p;
-        // Then try with galleryCandidates if filename only
         const name = p.split('/').pop();
         for (const base of galleryCandidates) {
           const candidate = base + name;
           if (await testImage(candidate)) return candidate;
         }
-        console.warn("resolveImagePath: kein Bild gefunden für", path);
         return null;
       }
 
-      // --- Galerie aufbauen (mit Fallback-Prüfung)
       const galleryGrid = document.getElementById('gallery-grid');
       if (galleryGrid) {
         (async () => {
@@ -443,7 +450,6 @@
             img.loading = 'lazy';
             img.src = src || placeholderDataUrl;
             img.addEventListener('error', () => { img.src = placeholderDataUrl; });
-            // keine Caption mehr -> kein Overlay
             fig.appendChild(img);
             fig.addEventListener('click', () => {
               if (img.src && img.src !== placeholderDataUrl) openLightboxBySrc(img.src, i);
@@ -453,7 +459,6 @@
         })();
       }
 
-      // --- Lightbox
       let lightboxIndex = 0;
       const lb = document.getElementById('lightbox');
       const lbImg = document.getElementById('lb-img');
@@ -490,7 +495,6 @@
         if (e.key === 'ArrowRight') document.getElementById('lb-next').click();
       });
 
-      // --- Navigation & Views
       const sidebar = document.getElementById('sidebar');
       const hamburger = document.getElementById('hamburger');
       hamburger.addEventListener('click', () => sidebar.classList.toggle('open'));
@@ -505,18 +509,16 @@
         sidebar.classList.remove('open');
       }
 
-      // --- Blog: dynamisch laden aus assets/blog-data.json
       let blogDataCache = null;
       async function loadBlogData() {
         if (blogDataCache) return blogDataCache;
         try {
           const r = await fetch('assets/blog-data.json');
-          if (!r.ok) throw new Error('assets/blog-data.json konnte nicht geladen werden (' + r.status + ')');
+          if (!r.ok) throw new Error('assets/blog-data.json konnte nicht geladen werden');
           blogDataCache = await r.json();
-          console.log('Blog-Daten geladen, Beiträge:', Object.keys(blogDataCache).length);
           return blogDataCache;
         } catch (err) {
-          console.error('Fehler beim Laden blog-data.json:', err);
+          console.error(err);
           return null;
         }
       }
@@ -527,24 +529,18 @@
         grid.innerHTML = `<div style="padding:2rem;color:var(--muted)">Lade Beiträge…</div>`;
         const data = await loadBlogData();
         if (!data) {
-          grid.innerHTML = `<div style="padding:2rem;color:var(--muted)">Blog-Daten konnten nicht geladen werden. Prüfe assets/blog-data.json (siehe Console).</div>`;
+          grid.innerHTML = `<div style="padding:2rem;color:var(--muted)">Blog-Daten konnten nicht geladen werden.</div>`;
           showView('blog');
           return;
         }
-
         grid.innerHTML = "";
         for (const slug of Object.keys(data)) {
           const post = data[slug];
           const card = document.createElement('div');
           card.className = 'blog-card';
           card.id = 'post-' + slug;
-
-          let thumbSrc = null;
-          if (post.image) {
-            thumbSrc = await resolveImagePath(post.image);
-          }
+          let thumbSrc = await resolveImagePath(post.image);
           if (!thumbSrc) thumbSrc = placeholderDataUrl;
-
           card.innerHTML = `
             <img class="card-img" src="${thumbSrc}" alt="${(post.title || '').replace(/"/g,'')}" />
             <div class="card-body">
@@ -555,12 +551,11 @@
           `;
           grid.appendChild(card);
         }
-
         showView('blog');
       }
 
       function openArticle(slug) {
-        if (!blogDataCache) return console.warn('Blog-Cache leer');
+        if (!blogDataCache) return;
         const post = blogDataCache[slug];
         if (!post) return;
         document.getElementById('art-title').textContent = post.title || '';
@@ -569,48 +564,26 @@
         showView('article');
       }
 
-      // Event delegation: click on blog-card opens article
       document.addEventListener('click', e => {
         const card = e.target.closest('.blog-card');
-        if (card && card.id && card.id.startsWith('post-')) {
-          const slug = card.id.replace('post-', '');
-          openArticle(slug);
+        if (card && card.id?.startsWith('post-')) {
+          openArticle(card.id.replace('post-', ''));
         }
       });
 
-      // Nav links: blog special -> load then show
       document.querySelectorAll('.nav-link').forEach(link => {
         link.addEventListener('click', async (e) => {
           e.preventDefault();
           const view = link.dataset.view;
           if (!view) return;
           if (view === 'blog') {
-            await loadBlogData();
             await showBlog();
           } else {
             showView(view);
           }
         });
       });
-
-      // --- Helper for resolving blog image path (tries provided path, then galleryCandidates)
-      async function resolveImagePath(path) {
-        if (!path) return null;
-        if (/^https?:\/\//i.test(path)) {
-          return (await testImage(path)) ? path : null;
-        }
-        const normalized = path.replace(/^\/+/, '');
-        if (await testImage(normalized)) return normalized;
-        const filename = normalized.split('/').pop();
-        for (const base of galleryCandidates) {
-          const candidate = base + filename;
-          if (await testImage(candidate)) return candidate;
-        }
-        console.warn('resolveImagePath: kein Bild gefunden für', path);
-        return null;
-      }
-
-    }); // DOMContentLoaded end
+    });
   </script>
 </body>
 </html>
