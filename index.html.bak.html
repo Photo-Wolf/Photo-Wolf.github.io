@@ -23,7 +23,6 @@
     html, body { height: 100%; background: var(--bg); color: var(--text); font-family: var(--font); font-size: 16px; line-height: 1.6; }
     a { color: var(--accent); text-decoration: none; }
     a:hover { text-decoration: underline; }
-    :focus-visible { outline: 3px solid var(--accent); outline-offset: 3px; }
 
     .layout { display: flex; min-height: calc(100vh - var(--footer-h)); }
 
@@ -200,27 +199,27 @@
 </head>
 <body>
 
-  <button class="hamburger" id="hamburger" type="button" aria-label="Menü öffnen" aria-controls="sidebar" aria-expanded="false"><span></span><span></span><span></span></button>
+  <button class="hamburger" id="hamburger" aria-label="Menü öffnen"><span></span><span></span><span></span></button>
 
   <div class="layout">
 
-    <nav class="sidebar" id="sidebar" aria-label="Hauptnavigation">
+    <nav class="sidebar" id="sidebar">
       <div class="logo">Photo-Wolf</div>
       <div class="tagline">Licht · Moment · Abenteuer</div>
       <ul>
-        <li><a href="#home" data-view="home"        class="nav-link active"><span class="nav-icon">◈</span>Start</a></li>
-        <li><a href="#galerie" data-view="galerie"     class="nav-link"><span class="nav-icon">◧</span>Galerie</a></li>
-        <li><a href="#blog" data-view="blog"        class="nav-link"><span class="nav-icon">✦</span>Blog</a></li>
-        <li><a href="#tfp" data-view="tfp"         class="nav-link"><span class="nav-icon">✱</span>TFP</a></li>
-        <li><a href="#ueber" data-view="ueber"       class="nav-link"><span class="nav-icon">◉</span>Über mich</a></li>
-        <li><a href="#ausruestung" data-view="ausruestung" class="nav-link"><span class="nav-icon">⌖</span>Ausrüstung</a></li>
-        <li><a href="#kontakt" data-view="kontakt"     class="nav-link"><span class="nav-icon">◎</span>Kontakt</a></li>
-        <li><a href="#impressum" data-view="impressum"   class="nav-link"><span class="nav-icon">·</span>Impressum</a></li>
-        <li><a href="#datenschutz" data-view="datenschutz" class="nav-link"><span class="nav-icon">¶</span>Datenschutz</a></li>
+        <li><a href="#" data-view="home"        class="nav-link active"><span class="nav-icon">◈</span>Start</a></li>
+        <li><a href="#" data-view="galerie"     class="nav-link"><span class="nav-icon">◧</span>Galerie</a></li>
+        <li><a href="#" data-view="blog"        class="nav-link"><span class="nav-icon">✦</span>Blog</a></li>
+        <li><a href="#" data-view="tfp"         class="nav-link"><span class="nav-icon">✱</span>TFP</a></li>
+        <li><a href="#" data-view="ueber"       class="nav-link"><span class="nav-icon">◉</span>Über mich</a></li>
+        <li><a href="#" data-view="ausruestung" class="nav-link"><span class="nav-icon">⌖</span>Ausrüstung</a></li>
+        <li><a href="#" data-view="kontakt"     class="nav-link"><span class="nav-icon">◎</span>Kontakt</a></li>
+        <li><a href="#" data-view="impressum"   class="nav-link"><span class="nav-icon">·</span>Impressum</a></li>
+        <li><a href="#" data-view="datenschutz" class="nav-link"><span class="nav-icon">¶</span>Datenschutz</a></li>
       </ul>
     </nav>
 
-    <main id="main" tabindex="-1">
+    <main id="main">
 
       <!-- HOME -->
       <div class="view active" id="view-home">
@@ -230,7 +229,7 @@
           <p>Unterwegs mit der Canon R6 – zwischen Alpen, Stadtleben irgendwo auf einer Schotterpiste.</p>
           <p><strong>TFP-Shootings (Time for Print / Time for Photos)</strong></p>
           <p>Ich bin immer auf der Suche nach spannenden Gesichtern und neuen Projekten zur Erweiterung meines Portfolios. Wenn Du Lust auf ein gemeinsames Projekt auf TFP-Basis hast, melde Dich gerne bei mir per <a href="mailto:rip2345@gmail.com">E-Mail</a> oder auf <a href="https://bsky.app/profile/photo-wolf.bsky.social" target="_blank" rel="noopener noreferrer">Bluesky</a>!</p>
-          <a class="btn nav-link" href="#galerie" data-view="galerie">Zur Galerie →</a>
+          <button class="btn" onclick="document.querySelector('[data-view=&quot;galerie&quot;]').click()">Zur Galerie →</button>
           <div class="exif-bar">
             <span>📷 <strong>Canon EOS R6</strong></span>
             <span>🔭 <strong>16–200mm</strong> Brennweite</span>
@@ -260,7 +259,7 @@
       <!-- ARTIKEL -->
       <div class="view" id="view-article">
         <div class="article-container">
-          <a class="back-link nav-link" href="#blog" data-view="blog">← Zurück zum Blog</a>
+          <span class="back-link" onclick="document.querySelector('[data-view=&quot;blog&quot;]').click()">← Zurück zum Blog</span>
           <article>
             <header class="article-header">
               <div class="article-meta" id="art-date"></div>
@@ -373,307 +372,216 @@
         <svg class="bsky-icon" viewBox="0 0 360 320" xmlns="http://www.w3.org/2000/svg"><path d="M180 142c-16-72-75-120-120-120C18 22 0 60 0 90c0 42 28 70 60 80-40 8-60 30-60 60 0 36 30 68 80 68 36 0 72-18 100-60 28 42 64 60 100 60 50 0 80-32 80-68 0-30-20-52-60-60 32-10 60-38 60-80 0-30-18-68-60-68-45 0-104 48-120 120z"/></svg>
         Bluesky
       </a>
-      <a href="#impressum" data-view="impressum" class="nav-link">Impressum</a>
-      <a href="#datenschutz" data-view="datenschutz" class="nav-link">Datenschutz</a>
+      <a href="#" data-view="impressum" class="nav-link">Impressum</a>
+      <a href="#" data-view="datenschutz" class="nav-link">Datenschutz</a>
     </div>
   </footer>
 
-  <div class="lightbox" id="lightbox" role="dialog" aria-modal="true" aria-label="Bildansicht" aria-hidden="true">
-    <button class="lb-close" id="lb-close" type="button" aria-label="Bildansicht schließen">✕</button>
-    <button class="lb-prev" id="lb-prev" type="button" aria-label="Vorheriges Bild">‹</button>
+  <div class="lightbox" id="lightbox">
+    <button class="lb-close" id="lb-close">✕</button>
+    <button class="lb-prev" id="lb-prev">‹</button>
     <img src="" alt="" id="lb-img" />
-    <button class="lb-next" id="lb-next" type="button" aria-label="Nächstes Bild">›</button>
-    <div class="lb-caption" id="lb-caption" aria-live="polite"></div>
+    <button class="lb-next" id="lb-next">›</button>
+    <div class="lb-caption" id="lb-caption"></div>
   </div>
 
   <script>
     document.addEventListener('DOMContentLoaded', () => {
-      const galleryBase = 'assets/images/gallery/';
-      const galleryFiles = [
-        '10.jpg', '11.jpg', '12.jpg', '13.jpg', '14.jpg', '15.jpg', '16.jpg', '17.jpg', '18.jpg', '30.jpg',
-        '100.jpg', '101.jpg', '102.jpg', '103.jpg', '111.jpg', '112.jpg', '113.jpg', '130.jpg', '131.jpg', '140.jpg'
+      const galleryCandidates = [
+        "assets/images/gallery/",
+        "assets/images/gallery/archive/",
+        "assets/images/gallery/large/"
       ];
-      const placeholderDataUrl = `data:image/svg+xml;utf8,${encodeURIComponent("<svg xmlns='http://www.w3.org/2000/svg' width='600' height='400'><rect width='100%' height='100%' fill='#1a1a1a'/><text x='50%' y='50%' fill='#888' font-size='20' font-family='sans-serif' dominant-baseline='middle' text-anchor='middle'>Kein Bild</text></svg>")}`;
-      const validViews = new Set(['home', 'galerie', 'blog', 'tfp', 'ueber', 'ausruestung', 'kontakt', 'impressum', 'datenschutz']);
-      const main = document.getElementById('main');
-      const sidebar = document.getElementById('sidebar');
-      const hamburger = document.getElementById('hamburger');
+
+      const galleryFiles = [
+        "10.jpg","11.jpg","12.jpg","13.jpg","14.jpg",
+        "15.jpg","16.jpg","17.jpg","18.jpg","30.jpg",
+        "100.jpg","101.jpg","102.jpg","103.jpg","111.jpg","112.jpg",
+        "113.jpg","130.jpg","131.jpg","140.jpg"
+      ];
+
+      const placeholderSVG = encodeURIComponent(`<svg xmlns='http://www.w3.org/2000/svg' width='600' height='400'><rect width='100%' height='100%' fill='#1a1a1a'/><text x='50%' y='50%' fill='#888' font-size='20' font-family='sans-serif' dominant-baseline='middle' text-anchor='middle'>Kein Bild</text></svg>`);
+      const placeholderDataUrl = `data:image/svg+xml;utf8,${placeholderSVG}`;
+
+      function testImage(src) {
+        return new Promise(resolve => {
+          const img = new Image();
+          img.onload = () => resolve(true);
+          img.onerror = () => resolve(false);
+          img.src = src;
+        });
+      }
+
+      async function findGallerySrcFor(filename) {
+        for (const base of galleryCandidates) {
+          const candidate = base + filename;
+          const ok = await testImage(candidate);
+          if (ok) return candidate;
+        }
+        return null;
+      }
+
+      async function resolveImagePath(path) {
+        if (!path) return null;
+        if (/^https?:\/\//i.test(path)) {
+          const ok = await testImage(path);
+          return ok ? path : null;
+        }
+        const p = path.replace(/^\/+/, '');
+        if (await testImage(p)) return p;
+        const name = p.split('/').pop();
+        for (const base of galleryCandidates) {
+          const candidate = base + name;
+          if (await testImage(candidate)) return candidate;
+        }
+        return null;
+      }
+
       const galleryGrid = document.getElementById('gallery-grid');
-      const lightbox = document.getElementById('lightbox');
+      if (galleryGrid) {
+        (async () => {
+          for (let i = 0; i < galleryFiles.length; i++) {
+            const name = galleryFiles[i];
+            const src = await findGallerySrcFor(name);
+            const fig = document.createElement('figure');
+            const img = document.createElement('img');
+            img.alt = `Foto ${i + 1}`;
+            img.loading = 'lazy';
+            img.src = src || placeholderDataUrl;
+            img.addEventListener('error', () => { img.src = placeholderDataUrl; });
+            fig.appendChild(img);
+            fig.addEventListener('click', () => {
+              if (img.src && img.src !== placeholderDataUrl) openLightboxBySrc(img.src, i);
+            });
+            galleryGrid.appendChild(fig);
+          }
+        })();
+      }
+
+      let lightboxIndex = 0;
+      const lb = document.getElementById('lightbox');
       const lbImg = document.getElementById('lb-img');
       const lbCaption = document.getElementById('lb-caption');
-      const lbClose = document.getElementById('lb-close');
-      const lbPrev = document.getElementById('lb-prev');
-      const lbNext = document.getElementById('lb-next');
-      let blogDataCache = null;
-      let lightboxIndex = 0;
-      let lastFocusedElement = null;
 
-      function setMenuOpen(isOpen) {
-        sidebar.classList.toggle('open', isOpen);
-        hamburger.setAttribute('aria-expanded', String(isOpen));
-        hamburger.setAttribute('aria-label', isOpen ? 'Menü schließen' : 'Menü öffnen');
-        if (isOpen) sidebar.querySelector('.nav-link')?.focus();
-      }
-
-      function showView(viewId, shouldFocus = false) {
-        document.querySelectorAll('.view').forEach(view => view.classList.remove('active'));
-        document.querySelectorAll('.nav-link').forEach(link => link.classList.remove('active'));
-        document.getElementById(`view-${viewId}`)?.classList.add('active');
-        document.querySelectorAll(`[data-view="${viewId}"]`).forEach(link => link.classList.add('active'));
-        main.scrollTop = 0;
-        setMenuOpen(false);
-        if (shouldFocus) main.focus();
-      }
-
-      function setImageFallback(image) {
-        image.addEventListener('error', () => {
-          image.src = placeholderDataUrl;
-          image.alt = 'Bild nicht verfügbar';
-        }, { once: true });
-      }
-
-      function buildGallery() {
-        const fragment = document.createDocumentFragment();
-        galleryFiles.forEach((file, index) => {
-          const figure = document.createElement('figure');
-          const image = document.createElement('img');
-          image.src = `${galleryBase}${file}`;
-          image.alt = `Galeriefoto ${index + 1}`;
-          image.loading = 'lazy';
-          image.decoding = 'async';
-          setImageFallback(image);
-          figure.appendChild(image);
-          figure.addEventListener('click', () => openLightbox(index));
-          figure.tabIndex = 0;
-          figure.setAttribute('role', 'button');
-          figure.setAttribute('aria-label', `Galeriefoto ${index + 1} vergrößern`);
-          figure.addEventListener('keydown', event => {
-            if (event.key === 'Enter' || event.key === ' ') {
-              event.preventDefault();
-              openLightbox(index);
-            }
-          });
-          fragment.appendChild(figure);
-        });
-        galleryGrid.appendChild(fragment);
-      }
-
-      function openLightbox(index) {
-        const wasOpen = lightbox.classList.contains('open');
-        lightboxIndex = index;
-        lbImg.src = `${galleryBase}${galleryFiles[index]}`;
-        lbImg.alt = `Galeriefoto ${index + 1}`;
-        lbCaption.textContent = `${index + 1} / ${galleryFiles.length}`;
-        if (!wasOpen) lastFocusedElement = document.activeElement;
-        lightbox.classList.add('open');
-        lightbox.setAttribute('aria-hidden', 'false');
+      function openLightboxBySrc(src, idx) {
+        lbImg.src = src;
+        lightboxIndex = idx;
+        lbCaption.textContent = `${idx + 1} / ${galleryFiles.length}`;
+        lb.classList.add('open');
         document.body.style.overflow = 'hidden';
-        if (!wasOpen) lbClose.focus();
       }
-
       function closeLightbox() {
-        lightbox.classList.remove('open');
-        lightbox.setAttribute('aria-hidden', 'true');
-        lbImg.removeAttribute('src');
+        lb.classList.remove('open');
+        lbImg.src = '';
         document.body.style.overflow = '';
-        lastFocusedElement?.focus();
+      }
+      document.getElementById('lb-close').addEventListener('click', closeLightbox);
+      document.getElementById('lb-prev').addEventListener('click', () => {
+        const prev = (lightboxIndex - 1 + galleryFiles.length) % galleryFiles.length;
+        const img = document.querySelectorAll('.gallery-grid img')[prev];
+        if (img) openLightboxBySrc(img.src, prev);
+      });
+      document.getElementById('lb-next').addEventListener('click', () => {
+        const next = (lightboxIndex + 1) % galleryFiles.length;
+        const img = document.querySelectorAll('.gallery-grid img')[next];
+        if (img) openLightboxBySrc(img.src, next);
+      });
+      lb.addEventListener('click', e => { if (e.target === lb) closeLightbox(); });
+      document.addEventListener('keydown', e => {
+        if (!lb.classList.contains('open')) return;
+        if (e.key === 'Escape') closeLightbox();
+        if (e.key === 'ArrowLeft') document.getElementById('lb-prev').click();
+        if (e.key === 'ArrowRight') document.getElementById('lb-next').click();
+      });
+
+      const sidebar = document.getElementById('sidebar');
+      const hamburger = document.getElementById('hamburger');
+      hamburger.addEventListener('click', () => sidebar.classList.toggle('open'));
+
+      function showView(viewId) {
+        document.querySelectorAll('.view').forEach(v => v.classList.remove('active'));
+        document.querySelectorAll('.nav-link').forEach(l => l.classList.remove('active'));
+        const activeView = document.getElementById('view-' + viewId);
+        if (activeView) activeView.classList.add('active');
+        document.querySelectorAll(`[data-view="${viewId}"]`).forEach(l => l.classList.add('active'));
+        document.getElementById('main').scrollTop = 0;
+        sidebar.classList.remove('open');
       }
 
-      function changeLightboxImage(direction) {
-        openLightbox((lightboxIndex + direction + galleryFiles.length) % galleryFiles.length);
-      }
-
-      function setStatus(container, message) {
-        container.replaceChildren();
-        const status = document.createElement('p');
-        status.style.cssText = 'padding:2rem;color:var(--muted)';
-        status.textContent = message;
-        container.appendChild(status);
-      }
-
+      let blogDataCache = null;
       async function loadBlogData() {
         if (blogDataCache) return blogDataCache;
         try {
-          const response = await fetch('assets/blog-data.json', { credentials: 'same-origin' });
-          if (!response.ok) throw new Error(`Blog-Daten konnten nicht geladen werden (${response.status}).`);
-          const data = await response.json();
-          if (!data || typeof data !== 'object' || Array.isArray(data)) throw new Error('Blog-Daten haben ein ungültiges Format.');
-          blogDataCache = data;
-          return data;
-        } catch (error) {
-          console.error(error);
+          const r = await fetch('assets/blog-data.json');
+          if (!r.ok) throw new Error('assets/blog-data.json konnte nicht geladen werden');
+          blogDataCache = await r.json();
+          return blogDataCache;
+        } catch (err) {
+          console.error(err);
           return null;
         }
       }
 
-      function createBlogCard(slug, post) {
-        const card = document.createElement('article');
-        const image = document.createElement('img');
-        const body = document.createElement('div');
-        const date = document.createElement('div');
-        const title = document.createElement('div');
-        const excerpt = document.createElement('div');
-        card.className = 'blog-card';
-        card.tabIndex = 0;
-        card.setAttribute('role', 'link');
-        card.setAttribute('aria-label', `Blogartikel: ${post.title || 'Ohne Titel'}`);
-        image.className = 'card-img';
-        image.src = typeof post.image === 'string' && post.image ? post.image : placeholderDataUrl;
-        image.alt = post.title || 'Vorschaubild zum Blogartikel';
-        image.loading = 'lazy';
-        image.decoding = 'async';
-        setImageFallback(image);
-        body.className = 'card-body';
-        date.className = 'card-date';
-        title.className = 'card-title';
-        excerpt.className = 'card-excerpt';
-        date.textContent = post.date || '';
-        title.textContent = post.title || '';
-        excerpt.textContent = post.excerpt || '';
-        body.append(date, title, excerpt);
-        card.append(image, body);
-        const navigate = () => { location.hash = `artikel/${encodeURIComponent(slug)}`; };
-        card.addEventListener('click', navigate);
-        card.addEventListener('keydown', event => {
-          if (event.key === 'Enter' || event.key === ' ') {
-            event.preventDefault();
-            navigate();
-          }
-        });
-        return card;
-      }
-
-      async function renderBlog() {
+      async function showBlog() {
         const grid = document.getElementById('blog-grid');
-        if (blogDataCache) return blogDataCache;
-        setStatus(grid, 'Lade Beiträge…');
+        if (!grid) return;
+        grid.innerHTML = `<div style="padding:2rem;color:var(--muted)">Lade Beiträge…</div>`;
         const data = await loadBlogData();
         if (!data) {
-          setStatus(grid, 'Blog-Daten konnten nicht geladen werden.');
-          return null;
-        }
-        const fragment = document.createDocumentFragment();
-        Object.entries(data).forEach(([slug, post]) => {
-          if (post && typeof post === 'object') fragment.appendChild(createBlogCard(slug, post));
-        });
-        grid.replaceChildren(fragment);
-        return data;
-      }
-
-      function isSafeUrl(value, type) {
-        try {
-          const url = new URL(value, location.origin);
-          return type === 'href'
-            ? ['http:', 'https:', 'mailto:'].includes(url.protocol)
-            : ['http:', 'https:'].includes(url.protocol);
-        } catch {
-          return false;
-        }
-      }
-
-      function sanitizeBlogHtml(html) {
-        const allowedTags = new Set(['p', 'br', 'strong', 'b', 'em', 'i', 'u', 's', 'blockquote', 'ul', 'ol', 'li', 'h2', 'h3', 'h4', 'figure', 'figcaption', 'a', 'img']);
-        const parser = new DOMParser();
-        const source = parser.parseFromString(typeof html === 'string' ? html : '', 'text/html');
-        const fragment = document.createDocumentFragment();
-        const cleanNode = node => {
-          if (node.nodeType === Node.TEXT_NODE) return document.createTextNode(node.textContent);
-          if (node.nodeType !== Node.ELEMENT_NODE) return null;
-          const tag = node.tagName.toLowerCase();
-          if (['script', 'style', 'iframe', 'object', 'embed', 'template'].includes(tag)) return null;
-          const target = allowedTags.has(tag) ? document.createElement(tag) : document.createDocumentFragment();
-          if (allowedTags.has(tag)) {
-            if (tag === 'a' && isSafeUrl(node.getAttribute('href') || '', 'href')) {
-              target.href = node.getAttribute('href');
-              if (node.getAttribute('target') === '_blank') {
-                target.target = '_blank';
-                target.rel = 'noopener noreferrer';
-              }
-            }
-            if (tag === 'img' && isSafeUrl(node.getAttribute('src') || '', 'src')) {
-              target.src = node.getAttribute('src');
-              target.alt = node.getAttribute('alt') || '';
-              target.loading = 'lazy';
-              target.decoding = 'async';
-              setImageFallback(target);
-            }
-          }
-          node.childNodes.forEach(child => {
-            const cleaned = cleanNode(child);
-            if (cleaned) target.appendChild(cleaned);
-          });
-          return target;
-        };
-        source.body.childNodes.forEach(node => {
-          const cleaned = cleanNode(node);
-          if (cleaned) fragment.appendChild(cleaned);
-        });
-        return fragment;
-      }
-
-      async function showArticle(slug) {
-        const data = await renderBlog();
-        const post = data?.[slug];
-        if (!post) {
-          showView('blog', true);
+          grid.innerHTML = `<div style="padding:2rem;color:var(--muted)">Blog-Daten konnten nicht geladen werden.</div>`;
+          showView('blog');
           return;
         }
+        grid.innerHTML = "";
+        for (const slug of Object.keys(data)) {
+          const post = data[slug];
+          const card = document.createElement('div');
+          card.className = 'blog-card';
+          card.id = 'post-' + slug;
+          let thumbSrc = await resolveImagePath(post.image);
+          if (!thumbSrc) thumbSrc = placeholderDataUrl;
+          card.innerHTML = `
+            <img class="card-img" src="${thumbSrc}" alt="${(post.title || '').replace(/"/g,'')}" />
+            <div class="card-body">
+              <div class="card-date">${post.date || ''}</div>
+              <div class="card-title">${post.title || ''}</div>
+              <div class="card-excerpt">${post.excerpt || ''}</div>
+            </div>
+          `;
+          grid.appendChild(card);
+        }
+        showView('blog');
+      }
+
+      function openArticle(slug) {
+        if (!blogDataCache) return;
+        const post = blogDataCache[slug];
+        if (!post) return;
         document.getElementById('art-title').textContent = post.title || '';
         document.getElementById('art-date').textContent = post.date || '';
-        document.getElementById('art-content').replaceChildren(sanitizeBlogHtml(post.content));
-        showView('article', true);
+        document.getElementById('art-content').innerHTML = post.content || '';
+        showView('article');
       }
 
-      async function route() {
-        let hash = location.hash.replace(/^#/, '');
-        try { hash = decodeURIComponent(hash); } catch { hash = ''; }
-        if (hash.startsWith('artikel/')) {
-          await showArticle(hash.slice('artikel/'.length));
-        } else {
-          const view = validViews.has(hash) ? hash : 'home';
-          if (view === 'blog') await renderBlog();
-          showView(view, true);
+      document.addEventListener('click', e => {
+        const card = e.target.closest('.blog-card');
+        if (card && card.id?.startsWith('post-')) {
+          openArticle(card.id.replace('post-', ''));
         }
-      }
+      });
 
-      hamburger.addEventListener('click', () => setMenuOpen(!sidebar.classList.contains('open')));
       document.querySelectorAll('.nav-link').forEach(link => {
-        link.addEventListener('click', event => {
+        link.addEventListener('click', async (e) => {
+          e.preventDefault();
           const view = link.dataset.view;
           if (!view) return;
-          event.preventDefault();
-          if (location.hash === `#${view}`) route();
-          else location.hash = view;
+          if (view === 'blog') {
+            await showBlog();
+          } else {
+            showView(view);
+          }
         });
       });
-      lbClose.addEventListener('click', closeLightbox);
-      lbPrev.addEventListener('click', () => changeLightboxImage(-1));
-      lbNext.addEventListener('click', () => changeLightboxImage(1));
-      lightbox.addEventListener('click', event => { if (event.target === lightbox) closeLightbox(); });
-      lbImg.addEventListener('error', () => {
-        lbImg.src = placeholderDataUrl;
-        lbImg.alt = 'Bild nicht verfügbar';
-      });
-      document.addEventListener('keydown', event => {
-        if (lightbox.classList.contains('open')) {
-          if (event.key === 'Escape') closeLightbox();
-          if (event.key === 'ArrowLeft') changeLightboxImage(-1);
-          if (event.key === 'ArrowRight') changeLightboxImage(1);
-          if (event.key === 'Tab') {
-            const controls = [lbClose, lbPrev, lbNext];
-            const current = controls.indexOf(document.activeElement);
-            if (event.shiftKey && current === 0) { event.preventDefault(); lbNext.focus(); }
-            if (!event.shiftKey && current === controls.length - 1) { event.preventDefault(); lbClose.focus(); }
-          }
-        } else if (event.key === 'Escape' && sidebar.classList.contains('open')) {
-          setMenuOpen(false);
-          hamburger.focus();
-        }
-      });
-      window.addEventListener('hashchange', route);
-      buildGallery();
-      route();
     });
   </script>
 </body>
